@@ -1,0 +1,66 @@
+.nav,
+.body,
+.footer {
+  position: relative;
+  z-index: 1; /*show particles udnerneath*/
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.nav > a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+.nav > a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 82vh; /*make dynamic*/
+}
+
+.tagline {
+  color: var(--quaternary);
+  font-size: 3rem;
+  font-weight: 300;
+}
+
+.tagline > span {
+  color: var(--text);
+}
+
+.motto {
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 300;
+  margin-bottom: 1.7rem;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+/*redesign footer to not be a square lol */
+.footer > a,
+p {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.8rem;
+}
+
+.footer > a:hover,
+p:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

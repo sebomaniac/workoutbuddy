@@ -1,0 +1,8 @@
+button {
+  padding: 0.7rem 3rem;
+  border-radius: 0.8rem;
+  border: none;
+  background: linear-gradient(90deg, #a020f0 18%, #6a0dad 78%);
+  color: #fff;
+  font-weight: 600;
+}

@@ -1,0 +1,9 @@
+.logo {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/*fix this*/
+.logo:hover {
+  cursor: pointer;
+}
