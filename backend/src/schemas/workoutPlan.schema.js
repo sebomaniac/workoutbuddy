@@ -31,21 +31,13 @@ const daySchema = new Schema({
   notes:      String
 }, { _id: false });
 
-function sevenDays(val) {
-  return Array.isArray(val) && val.length === 7;
-}
 
 const workoutPlanSchema = new Schema({
   name:        { type: String, required: true },
   description: String,
-  createdBy:   { type: Schema.Types.ObjectId, ref: 'User', required: true },
   startDate:   Date,
   days: {
     type: [daySchema],
-    validate: {
-      validator: sevenDays,
-      message: props => `A plan must have exactly 7 days (got ${props.value.length})`
-    }
   }
 }, { timestamps: true });
 
