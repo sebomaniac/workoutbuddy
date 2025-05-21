@@ -10,7 +10,7 @@ const Landing = () => {
       <ParticlesBackground />
       <div className={styles.nav}>
         <Logo />
-        <Link to="/signup">Sign Up</Link>
+        <Link to="/signup" className="underline-animated">Sign Up</Link>
       </div>
       <div className={styles.body}>
         <h1 className={styles.tagline}>
@@ -26,6 +26,7 @@ const Landing = () => {
           target="_blank"
           rel="noopener noreferrer"
           href="https://web.cs.ucla.edu/classes/spring25/cs35L/project.html"
+          className="underline-animated"
         >
           CS35L Final Project
         </a>
