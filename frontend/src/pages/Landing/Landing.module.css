@@ -33,7 +33,7 @@
 
 .tagline {
   color: var(--quaternary);
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 300;
 }
 
@@ -43,7 +43,7 @@
 
 .motto {
   color: var(--text);
-  font-size: 1rem;
+  font-size: 2rem;
   font-weight: 300;
   margin-bottom: 1.7rem;
 }

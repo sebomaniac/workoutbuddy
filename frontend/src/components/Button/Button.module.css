@@ -5,6 +5,7 @@ button {
   background: linear-gradient(90deg, #a020f0 18%, #6a0dad 78%);
   color: #fff;
   font-weight: 600;
+  font-size: 1rem;
 }
 
 button:hover {
