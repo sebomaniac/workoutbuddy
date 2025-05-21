@@ -9,7 +9,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<h1>Welcome to Workout Buddy</h1>} />
+          <Route path="/" element={<Landing />} />
           <Route path="/login" element={<OnboardingForm type="Log In" />} />
           <Route path="/signup" element={<OnboardingForm type="Sign Up" />} />
           <Route path="/dashboard" element={<Dashboard />} />

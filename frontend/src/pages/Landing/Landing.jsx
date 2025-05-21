@@ -25,7 +25,15 @@ const Landing = () => {
         <a href="https://web.cs.ucla.edu/classes/spring25/cs35L/project.html">
           CS35L Final Project
         </a>
-        <p>Group Members</p>
+        <div className={styles.groupMemberEffect}>
+          <p className={styles.groupMemberToggle}>Group Members</p>
+          <p className={styles.groupMemberNames}>
+            Lavender Hwang&nbsp;&nbsp;&nbsp;&nbsp;Sebastian
+            Johanessen&nbsp;&nbsp;&nbsp;&nbsp;Mark
+            Mairs&nbsp;&nbsp;&nbsp;&nbsp;Kian Shandi&nbsp;&nbsp;&nbsp;&nbsp;
+            Daniel Zhou
+          </p>
+        </div>
       </div>
     </>
   );

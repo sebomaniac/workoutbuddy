@@ -26,7 +26,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 82vh; /*make dynamic*/
+  height: 75vh; /*make dynamic*/
+  text-align: center;
+  overflow: hidden;
 }
 
 .tagline {
@@ -48,7 +50,9 @@
 
 .footer {
   display: flex;
-  justify-content: space-between;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 /*redesign footer to not be a square lol */
@@ -63,4 +67,39 @@ p {
 p:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+.groupMemberEffect {
+  display: inline-block;
+  text-align: right;
+  position: relative;
+}
+
+.groupMemberToggle,
+.groupMemberNames {
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  white-space: nowrap;
+}
+
+.groupMemberNames {
+  opacity: 0;
+  transform: translateX(10px);
+
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: right;
+
+  pointer-events: none;
+}
+
+.groupMemberEffect:hover .groupMemberToggle {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.groupMemberEffect:hover .groupMemberNames {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  text-decoration: none;
 }
