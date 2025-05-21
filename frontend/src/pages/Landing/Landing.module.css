@@ -83,12 +83,10 @@ p:hover {
 .groupMemberNames {
   opacity: 0;
   transform: translateX(10px);
-
   position: absolute;
   right: 0;
   top: 0;
   text-align: right;
-
   pointer-events: none;
 }
 

@@ -10,7 +10,9 @@ const Landing = () => {
       <ParticlesBackground />
       <div className={styles.nav}>
         <Logo />
-        <Link to="/signup">Sign Up</Link>
+        <Link to="/signup" className={styles.signupLink}>
+          Sign Up
+        </Link>
       </div>
       <div className={styles.body}>
         <h1 className={styles.tagline}>
