@@ -195,5 +195,15 @@ router.delete("/delete-plan", async (req, res) => {
     }
 });
 
+router.post("/add-settings", async (req, res) => {
+  try {
+
+  } catch(error) {
+    console.error('Error adding settings:', error);
+    res.status(400).json({ error: error.message });
+  }
+
+})
+
 module.exports = router;
 
