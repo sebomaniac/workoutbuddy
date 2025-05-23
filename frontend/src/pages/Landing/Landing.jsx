@@ -34,7 +34,7 @@ const Landing = () => {
           <p className={styles.groupMemberToggle}>Group Members</p>
           <p className={styles.groupMemberNames}>
             Lavender Hwang&nbsp;&nbsp;&nbsp;&nbsp;Sebastian
-            Johanessen&nbsp;&nbsp;&nbsp;&nbsp;Mark
+            Johannessen&nbsp;&nbsp;&nbsp;&nbsp;Mark
             Mairs&nbsp;&nbsp;&nbsp;&nbsp;Kian Shandi&nbsp;&nbsp;&nbsp;&nbsp;
             Daniel Zhou
           </p>
