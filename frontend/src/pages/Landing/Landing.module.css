@@ -2,7 +2,7 @@
 .body,
 .footer {
   position: relative;
-  z-index: 1; /*show particles udnerneath*/
+  z-index: 1; /*show particles underneath*/
 }
 
 .nav {
