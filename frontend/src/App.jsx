@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import OnboardingForm from "./pages/Onboarding/OnboardingForm";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Landing from "./pages/Landing/Landing";
-import Setup from "./pages/Plan-setup/PlanSetup";
+import Setup from "./pages/PlanSetup/PlanSetup";
 import "./index.css";
 
 function App() {
