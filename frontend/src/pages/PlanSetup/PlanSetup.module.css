@@ -1,11 +1,11 @@
 .button {
-  padding: 10px 16px;
-  margin: 6px;
+  padding: 0.6rem 1rem;
+  margin: 0.3rem;
   border: none;
-  border-radius: 12px;
-  background-color: gray;
+  border-radius: 0.8rem;
+  background-color: #3b3b3b;
   color: var(--text);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
 }
@@ -20,21 +20,151 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 80%;
+  width: 60%;
   height: 100%;
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 0.8rem;
+  background-color: #222222;
 }
 
 .upperContainer {
   display: flex;
   flex: 1;
   flex-direction: row;
-  align-items: center;
+  align-items: top;
   justify-content: space-between;
   width: 100%;
 }
 
-.typesContainer, .musclesContainer {
+.upperLeftContainer, .upperRightContainer {
     width: 50%;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.subtitle {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.prompt {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 1rem;
+  background-color: #3b3b3b;
+  border-radius: 0.8rem;
+  border-style: none;
+  width: 100%;
+  padding: 1rem;
+  line-height: 1.5;
+  resize: none;
+  margin-top: 0.3rem;
+}
+
+.prompt:focus {
+  outline: solid var(--tertiary);
+}
+
+.types {
+    margin-bottom: 1.4rem;
+}
+
+.promptContainer {
+  width: 100%;
+}
+
+.advancedButton {
+    border-radius: 0.8rem;
+    border: none;
+    background: none;
+    color: var(--tertiary);
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.arrow {
+  display: inline-block;
+  margin-left: 0.5rem;
+  transition: transform 0.2s;
+}
+
+.arrowFlipped {
+  transform: rotate(180deg);
+}
+
+.topContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.setupInstructions {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--tertiary);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.advancedSettings {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.advancedOptions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.lowerLeftContainer, .lowerRightContainer {
+    width: 50%;
+}
+
+.advancedInput {
+  width: 50%;
+  padding: 0.5rem;
+  border-radius: 0.8rem;
+  border: none;
+  background-color: #3b3b3b;
+  color: var(--text);
+  font-size: 1rem;
+}
+.advancedInput:focus {
+  outline: solid var(--tertiary);
+}
+
+.submitButton {
+  padding: 0.8rem 1.4rem;
+  margin: 0.3rem;
+  border: none;
+  border-radius: 0.8rem;
+  background-color: var(--tertiary);
+  color: var(--text);
+  font-size: 1.6rem;
+  font-weight: 500;
+  cursor: pointer;
 }
