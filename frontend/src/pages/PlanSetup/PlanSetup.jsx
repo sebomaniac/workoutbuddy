@@ -1,6 +1,9 @@
 import ParticlesBackground from "../../components/ParticlesBackground";
 import styles from "./PlanSetup.module.css";
 import { useState } from "react";
+import MultipleSelector from "./components/MultipleSelector/MultipleSelector";
+import DifficultySelector from "./components/DifficultySelector/DifficultySelector";
+import PromptInput from "./components/PromptInput/PromptInput";
 
 const PlanSetup = () => {
   const types = ["cardio", "plyometrics", "strength", "stretching"]
@@ -8,10 +11,20 @@ const PlanSetup = () => {
     "calves", "chest", "forearms", "glutes", "hamstrings", "lats",
     "lower_back", "middle_back", "neck", "quadriceps", "traps", "triceps"]
   const difficulties = ["beginner", "intermediate", "expert"]
+  const genders = ["male", 'female', 'non-binary', 'other']
 
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [selectedMuscles, setSelectedMuscles] = useState([]);
   const [selectedDifficulty, setSelectedDifficulty] = useState("");
+
+  const [selectedGender, setSelectedGender] = useState("");
+  const [age, setAge] = useState("");
+  const [weight, setWeight] = useState("");
+  const [height, setHeight] = useState("");
+  const [benchpressPR, setBenchpressPR] = useState("");
+  const [squatPR, setSquatPR] = useState("");
+  const [deadliftPR, setDeadliftPR] = useState("");
+  const [pullUpsPR, setPullUpsPR] = useState("");
 
   const [prompt, setPrompt] = useState("");
 
@@ -48,7 +61,6 @@ const PlanSetup = () => {
     } else {
       setSelectedDifficulty(difficulty);
     }
-    console.log("Selected difficulty:", selectedDifficulty);
   }
 
   return (
@@ -63,47 +75,28 @@ const PlanSetup = () => {
           </div>
           <div className={styles.upperContainer}>
             <div className={styles.upperLeftContainer}>
-              <div className={styles.types}>
-                <h3 className={styles.subtitle}>Workout Types</h3>
-                {types.map((type) => (
-                  <button
-                    key={type}
-                    onClick={() => handleTypeSelection(type)}
-                    className={`${styles.button} ${selectedTypes.includes(type) ? styles.selected : ""}`}
-                  >
-                    {type}
-                  </button>
-                ))}
-              </div>
-              <div className={styles.difficulty}>
-                <h3 className={styles.subtitle}>Difficulty</h3>
-                {difficulties.map((difficulty) => (
-                <button
-                  key={difficulty}
-                  onClick={() => handleDifficultySelection(difficulty)}
-                  className={`${styles.button} ${selectedDifficulty === difficulty ? styles.selected : ""}`}
-                >
-                  {difficulty}
-                </button>
-                ))}
-              </div>
+              <MultipleSelector
+                title="Workout Types"
+                types={types}
+                selectedTypes={selectedTypes}
+                onSelect={handleTypeSelection}
+              />
+              <DifficultySelector
+                difficulties={difficulties}
+                selectedDifficulty={selectedDifficulty}
+                onSelect={handleDifficultySelection}
+              />
             </div>
             <div className={styles.upperRightContainer}>
-              <div className={styles.muscleGroup}>
-                <h3 className={styles.subtitle}>Muscle Groups</h3>
-                {muscles.map((muscle) => (
-                  <button
-                    key={muscle}
-                    onClick={() => handleMuscleSelection(muscle)}
-                    className={`${styles.button} ${selectedMuscles.includes(muscle) ? styles.selected : ""}`}
-                  >
-                    {muscle}
-                  </button>
-                ))}
-              </div>
+              <MultipleSelector
+                title="Muscle Groups"
+                types={muscles}
+                selectedTypes={selectedMuscles}
+                onSelect={handleMuscleSelection}
+              />
             </div>
           </div>
-          <div className={styles.advancedSettings}>
+          <div className={styles.lowerContainer}>
             <button
               className={styles.advancedButton}
               onClick={() => setShowAdvanced(!showAdvanced)}
@@ -158,15 +151,11 @@ const PlanSetup = () => {
                 </div>
               </div>
             )}
-          </div>
-          <div className={styles.promptContainer}>
-            <h3 className={styles.subtitle}>Tell us about your goals</h3>
-            <textarea
-              className={styles.prompt}
-              placeholder="Describe your fitness goals, background, and time commitment"
-              value={prompt}
+
+            <PromptInput
+              title="Tell us about your goals"
+              prompt={prompt}
               onChange={(e) => setPrompt(e.target.value)}
-              rows={3}
             />
           </div>
           <button className={styles.submitButton}>Submit</button>

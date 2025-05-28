@@ -1,0 +1,32 @@
+.types {
+    margin-bottom: 1.4rem;
+}
+
+.title {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.prompt {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 1rem;
+  background-color: #3b3b3b;
+  border-radius: 0.8rem;
+  border-style: none;
+  width: 100%;
+  padding: 1rem;
+  line-height: 1.5;
+  resize: none;
+  margin-top: 0.3rem;
+}
+
+.prompt:focus {
+  outline: solid var(--tertiary);
+}
+
+.promptContainer {
+  width: 100%;
+}

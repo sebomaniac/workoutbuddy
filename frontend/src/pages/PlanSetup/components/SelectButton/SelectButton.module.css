@@ -1,0 +1,15 @@
+.button {
+  padding: 0.6rem 1rem;
+  margin: 0.3rem;
+  border: none;
+  border-radius: 0.8rem;
+  background-color: #3b3b3b;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: var(--tertiary);
+}

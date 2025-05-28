@@ -1,20 +1,3 @@
-.button {
-  padding: 0.6rem 1rem;
-  margin: 0.3rem;
-  border: none;
-  border-radius: 0.8rem;
-  background-color: #3b3b3b;
-  color: var(--text);
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.selected {
-  background-color: var(--tertiary);
-  color: #ffffff;
-}
-
 .setupCard {
   display: flex;
   flex-direction: column;
@@ -59,30 +42,7 @@
   justify-content: center;
 }
 
-.prompt {
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: var(--text);
-  margin-bottom: 1rem;
-  background-color: #3b3b3b;
-  border-radius: 0.8rem;
-  border-style: none;
-  width: 100%;
-  padding: 1rem;
-  line-height: 1.5;
-  resize: none;
-  margin-top: 0.3rem;
-}
-
-.prompt:focus {
-  outline: solid var(--tertiary);
-}
-
-.types {
-    margin-bottom: 1.4rem;
-}
-
-.promptContainer {
+.lowerContainer {
   width: 100%;
 }
 
