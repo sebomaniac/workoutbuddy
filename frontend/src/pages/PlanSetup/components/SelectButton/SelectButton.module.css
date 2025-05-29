@@ -8,8 +8,28 @@
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
+  transition: transform 0.1s ease, background 0.2s ease;
 }
-
-.selected {
-  background-color: var(--tertiary);
+/* make the button bigger when hovered over */
+.button:hover { 
+  background-color: rgba(124, 58, 237, 0.3); 
+  transform: scale(1.05);
+}
+.button:active {
+  background: linear-gradient(
+    135deg,
+    rgba(124, 58, 237, 1) 0%,
+    rgba(147, 51, 234, 1) 100%
+  );
+  transform: scale(0.98);
+}
+.button.selected {
+  background: linear-gradient(
+    135deg,
+    rgba(124, 58, 237, 1)   0%,
+    rgba(147, 51, 234, 1) 100%
+  );
+}
+.button.selected:hover {
+  transform: scale(1.05);
 }
