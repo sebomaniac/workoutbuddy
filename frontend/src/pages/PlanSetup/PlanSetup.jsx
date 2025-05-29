@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import ParticlesBackground from "../../components/ParticlesBackground";
 import styles from "./PlanSetup.module.css";
 import { useState } from "react";
@@ -128,7 +129,12 @@ const PlanSetup = () => {
   return (
     <>
       <div className={styles.page}>
-        <div className={styles.setupCard}>
+        <motion.div
+          className={styles.setupCard}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <div className={styles.topContainer}>
             <h2 className={styles.title}>
               Plan Setup
@@ -187,7 +193,7 @@ const PlanSetup = () => {
             />
           </div>
           <button className={styles.submitButton} onClick={handleSubmit}>Submit</button>
-        </div>
+        </motion.div>
       </div>
     </>
   );

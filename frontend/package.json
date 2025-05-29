@@ -12,6 +12,7 @@
   "dependencies": {
     "@tsparticles/preset-links": "^3.2.0",
     "@tsparticles/react": "^3.0.0",
+    "framer-motion": "^12.15.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.0",
