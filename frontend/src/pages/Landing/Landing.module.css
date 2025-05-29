@@ -2,7 +2,7 @@
 .body,
 .footer {
   position: relative;
-  z-index: 1; /*show particles udnerneath*/
+  z-index: 1; /*show particles underneath*/
 }
 
 .nav {
@@ -64,7 +64,7 @@ p {
 }
 
 .footer > a:hover,
-p:hover {
+.footer > p:hover {
   cursor: pointer;
   text-decoration: none;
 }
