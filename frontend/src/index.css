@@ -20,3 +20,30 @@ body {
   background: var(--background);
   margin: 2rem;
 }
+
+/* purple underline that grows from center Hooray!!
+do className="underline-animated" to add to a link. 
+All the commented lines are for stuff u can tweak */
+.underline-animated {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;            
+  color: var(--quaternary);          
+}
+
+.underline-animated::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;                      /* u can change vertical offset here */
+  left: 0;
+  width: 100%;
+  height: 2px;                       /* underline thickness */
+  background: #6a0dad;             /* underline color */
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;   /* speed & easing */
+}
+
+.underline-animated:hover::after {
+  transform: scaleX(1);              /* grow from center */
+}

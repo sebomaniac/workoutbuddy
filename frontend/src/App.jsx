@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import OnboardingForm from "./pages/Onboarding/OnboardingForm";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Landing from "./pages/Landing/Landing";
+import Setup from "./pages/PlanSetup/PlanSetup";
 import "./index.css";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
           <Route path="/login" element={<OnboardingForm type="Log In" />} />
           <Route path="/signup" element={<OnboardingForm type="Sign Up" />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/setup" element={<Setup />} />
           <Route path="/landing" element={<Landing />} />
         </Routes>
       </Router>

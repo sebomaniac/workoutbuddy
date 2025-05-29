@@ -2,7 +2,7 @@
 .body,
 .footer {
   position: relative;
-  z-index: 1; /*show particles udnerneath*/
+  z-index: 1; /*show particles underneath*/
 }
 
 .nav {
@@ -18,7 +18,7 @@
 
 .nav > a:hover {
   cursor: pointer;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .body {
@@ -64,9 +64,9 @@ p {
 }
 
 .footer > a:hover,
-p:hover {
+.footer > p:hover {
   cursor: pointer;
-  text-decoration: underline;
+  text-decoration: none;
 }
 .groupMemberEffect {
   display: inline-block;

@@ -1,4 +1,4 @@
-button {
+.button {
   padding: 0.7rem 3rem;
   border-radius: 0.8rem;
   border: none;
@@ -8,7 +8,7 @@ button {
   font-size: 1rem;
 }
 
-button:hover {
+.button:hover {
   cursor: pointer;
   transform: scale(1.03);
   filter: brightness(1.1);

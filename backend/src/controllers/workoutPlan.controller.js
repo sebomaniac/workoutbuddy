@@ -1,6 +1,7 @@
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const router = require("express").Router();
 const WorkoutPlan = require('../schemas/workoutPlan.schema');
+const { fetchExercisesFromNinjas } = require('../utils/ninjas.js');
 
 require('dotenv').config();
 
@@ -76,9 +77,32 @@ router.get("/all-plans", async (req, res) => {
 
 router.post("/create-plan", async (req, res) => {
     try {
-        const { prompt } = req.body;
+        const { prompt, type, muscles, difficulty } = req.body;
+
+        let exerciseList = [];
+
+        if (Array.isArray(muscles)) {
+          for (const muscle of muscles) {
+            const result = await fetchExercisesFromNinjas({ type, difficulty, muscle });
+            exerciseList.push(...result);
+          }
+        } else {
+            const result = await fetchExercisesFromNinjas({ type, difficulty, muscle: muscles });
+            exerciseList = result;
+        }
+
+        // turn the exercise list into a nice JSON string
+        const exerciseJSON = JSON.stringify(exerciseList, null, 2);
         
-        const fullPrompt = `${workoutPlanInstructions}\n\nUser request: ${prompt}\n\nRespond with only the JSON, no additional text or markdown formatting.`;
+        const fullPrompt = `
+        ${workoutPlanInstructions}
+        
+        User request: ${prompt}
+        
+        Available exercises you can use: ${exerciseJSON}
+        
+        Respond with only the JSON, no additional text or markdown formatting.
+        `;
         
         const result = await model.generateContent(fullPrompt);
         const responseText = result.response.text();
@@ -170,6 +194,16 @@ router.delete("/delete-plan", async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 });
+
+router.post("/add-settings", async (req, res) => {
+  try {
+
+  } catch(error) {
+    console.error('Error adding settings:', error);
+    res.status(400).json({ error: error.message });
+  }
+
+})
 
 module.exports = router;
 

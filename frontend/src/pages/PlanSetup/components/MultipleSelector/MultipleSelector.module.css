@@ -1,0 +1,9 @@
+.types {
+  margin-bottom: 1.4rem;
+}
+
+.title {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--text);
+}
