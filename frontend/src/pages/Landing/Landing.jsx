@@ -35,10 +35,11 @@ const Landing = () => {
         <div className={styles.groupMemberEffect}>
           <p className={styles.groupMemberToggle}>Group Members</p>
           <p className={styles.groupMemberNames}>
-            Lavender Hwang&nbsp;&nbsp;&nbsp;&nbsp;Sebastian
-            Johannessen&nbsp;&nbsp;&nbsp;&nbsp;Mark
-            Mairs&nbsp;&nbsp;&nbsp;&nbsp;Kian Shandi&nbsp;&nbsp;&nbsp;&nbsp;
-            Daniel Zhou
+            <a href="https://github.com/lavenderhwang" target="_blank" rel="noopener noreferrer" className="underline-animated">Lavender Hwang</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://github.com/sebomaniac" target="_blank" rel="noopener noreferrer" className="underline-animated">Sebastian Johannessen</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://github.com/markmairs" target="_blank" rel="noopener noreferrer" className="underline-animated">Mark Mairs</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://github.com/kiankian" target="_blank" rel="noopener noreferrer" className="underline-animated">Kian Shandi</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://github.com/danielhzhou" target="_blank" rel="noopener noreferrer" className="underline-animated">Daniel Zhou</a>
           </p>
         </div>
       </div>

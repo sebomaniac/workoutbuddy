@@ -28,7 +28,7 @@ All the commented lines are for stuff u can tweak */
   position: relative;
   display: inline-block;
   text-decoration: none;            
-  color: var(--quaternary);          
+  color: var(--text);          
 }
 
 .underline-animated::after {
