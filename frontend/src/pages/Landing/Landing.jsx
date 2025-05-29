@@ -1,5 +1,5 @@
 import Logo from "../../components/Logo/Logo";
-import Button from "../../components/Button/Button";
+import Button from "../../components/Buttons/Button";
 import styles from "./Landing.module.css";
 import { Link } from "react-router-dom";
 import ParticlesBackground from "../../components/ParticlesBackground";

@@ -1,7 +1,9 @@
+import LogoutButton from "../../components/Buttons/LogoutButton";
+
 const Dashboard = () => {
   return (
     <div className="dashboard">
-      <h1>Welcome back</h1>
+      <LogoutButton />
     </div>
   );
 };
