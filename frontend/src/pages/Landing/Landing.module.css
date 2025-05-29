@@ -64,7 +64,7 @@ p {
 }
 
 .footer > a:hover,
-p:hover {
+.footer > p:hover {
   cursor: pointer;
   text-decoration: none;
 }

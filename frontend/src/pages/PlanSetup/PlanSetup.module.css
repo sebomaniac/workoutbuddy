@@ -4,7 +4,6 @@
   align-items: center;
   justify-content: center;
   width: 60%;
-  height: 100%;
   padding: 2rem;
   border-radius: 0.8rem;
   background-color: #222222;
@@ -20,19 +19,14 @@
 }
 
 .upperLeftContainer, .upperRightContainer {
-    width: 50%;
+    flex: 1;
+    min-width: 0;
 }
 
 .title {
     font-size: 3rem;
     font-weight: 600;
     color: var(--text);
-}
-
-.subtitle {
-  font-size: 1.4rem;
-  font-weight: 500;
-  color: var(--text);
 }
 
 .page {
@@ -44,27 +38,6 @@
 
 .lowerContainer {
   width: 100%;
-}
-
-.advancedButton {
-    border-radius: 0.8rem;
-    border: none;
-    background: none;
-    color: var(--tertiary);
-    font-size: 1rem;
-    font-weight: 500;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-.arrow {
-  display: inline-block;
-  margin-left: 0.5rem;
-  transition: transform 0.2s;
-}
-
-.arrowFlipped {
-  transform: rotate(180deg);
 }
 
 .topContainer {
@@ -82,39 +55,6 @@
   color: var(--tertiary);
   margin-bottom: 1rem;
   text-align: center;
-}
-
-.advancedSettings {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}
-
-.advancedOptions {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.lowerLeftContainer, .lowerRightContainer {
-    width: 50%;
-}
-
-.advancedInput {
-  width: 50%;
-  padding: 0.5rem;
-  border-radius: 0.8rem;
-  border: none;
-  background-color: #3b3b3b;
-  color: var(--text);
-  font-size: 1rem;
-}
-.advancedInput:focus {
-  outline: solid var(--tertiary);
 }
 
 .submitButton {

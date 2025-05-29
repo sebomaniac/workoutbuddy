@@ -4,6 +4,7 @@ import { useState } from "react";
 import MultipleSelector from "./components/MultipleSelector/MultipleSelector";
 import DifficultySelector from "./components/DifficultySelector/DifficultySelector";
 import PromptInput from "./components/PromptInput/PromptInput";
+import AdvancedSettings from "./components/AdvancedSettings/AdvancedSettings";
 
 const PlanSetup = () => {
   const types = ["cardio", "plyometrics", "strength", "stretching"]
@@ -17,7 +18,7 @@ const PlanSetup = () => {
   const [selectedMuscles, setSelectedMuscles] = useState([]);
   const [selectedDifficulty, setSelectedDifficulty] = useState("");
 
-  const [selectedGender, setSelectedGender] = useState("");
+  const [gender, setGender] = useState("");
   const [age, setAge] = useState("");
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
@@ -63,6 +64,25 @@ const PlanSetup = () => {
     }
   }
 
+  function handleSubmit() {
+    if (selectedTypes.length === 0) {
+      alert("Please select at least one workout type.");
+      return;
+    }
+    if (selectedMuscles.length === 0) {
+      alert("Please select at least one muscle group.");
+      return;
+    }
+    if (selectedDifficulty === "") {
+      alert("Please select a difficulty level.");
+      return;
+    }
+    if (prompt.trim() === "") {
+      alert("Please describe your fitness goals.");
+      return;
+    }
+  }
+
   return (
     <>
       <div className={styles.page}>
@@ -97,68 +117,34 @@ const PlanSetup = () => {
             </div>
           </div>
           <div className={styles.lowerContainer}>
-            <button
-              className={styles.advancedButton}
-              onClick={() => setShowAdvanced(!showAdvanced)}
-            >
-              Advanced Settings (Optional)
-              <span
-                className={`${styles.arrow} ${showAdvanced ? styles.arrowFlipped : ""}`}
-              >
-                ▼
-              </span>
-            </button>
-            {showAdvanced && (
-              <div className={styles.advancedOptions}>
-                <div className={styles.lowerLeftContainer}>
-                  <p>Age</p>
-                  <input
-                    placeholder="Enter age in years"
-                    className={styles.advancedInput}
-                  />
-                  <p>Weight</p>
-                  <input
-                    placeholder="Enter weight in lbs"
-                    className={styles.advancedInput}
-                  />
-                  <p>Height</p>
-                  <input
-                    placeholder="Enter height in inches"
-                    className={styles.advancedInput}
-                  />
-                </div>
-                <div className={styles.lowerRightContainer}>
-                  <p>Benchpress PR</p>
-                  <input
-                    placeholder="Enter benchpress PR in lbs"
-                    className={styles.advancedInput}
-                  />
-                  <p>Squat PR</p>
-                  <input
-                    placeholder="Enter squat PR in lbs"
-                    className={styles.advancedInput}
-                  />
-                  <p>Deadlift PR</p>
-                  <input
-                    placeholder="Enter deadlift PR in lbs"
-                    className={styles.advancedInput}
-                  />
-                  <p>Pull-Ups PR</p>
-                  <input
-                    placeholder="Enter pull-ups PR in reps"
-                    className={styles.advancedInput}
-                  />
-                </div>
-              </div>
-            )}
-
+            <AdvancedSettings
+              showAdvanced={showAdvanced}
+              setShowAdvanced={setShowAdvanced}
+              gender={gender}
+              setGender={setGender}
+              age={age}
+              setAge={setAge}
+              weight={weight}
+              setWeight={setWeight}
+              height={height}
+              setHeight={setHeight}
+              benchpressPR={benchpressPR}
+              setBenchpressPR={setBenchpressPR}
+              squatPR={squatPR}
+              setSquatPR={setSquatPR}
+              deadliftPR={deadliftPR}
+              setDeadliftPR={setDeadliftPR}
+              pullUpsPR={pullUpsPR}
+              setPullUpsPR={setPullUpsPR}
+              genders={genders}
+            />
             <PromptInput
               title="Tell us about your goals"
               prompt={prompt}
               onChange={(e) => setPrompt(e.target.value)}
             />
           </div>
-          <button className={styles.submitButton}>Submit</button>
+          <button className={styles.submitButton} onClick={handleSubmit}>Submit</button>
         </div>
       </div>
     </>

@@ -4,6 +4,7 @@ const PromptInput = ({ title, prompt, onChange }) => (
   <div className={styles.types}>
     <h3 className={styles.title}>{title}</h3>
     <textarea
+      id="prompt"
       className={styles.prompt}
       placeholder="Describe your fitness goals, background, and time commitment"
       value={prompt}
