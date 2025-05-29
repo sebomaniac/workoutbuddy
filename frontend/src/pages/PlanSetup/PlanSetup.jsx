@@ -41,7 +41,6 @@ const PlanSetup = () => {
       newTypes.splice(newTypes.indexOf(type), 1);
       setSelectedTypes(newTypes);
     }
-    console.log("Selected types:", newTypes);
   }
 
   function handleMuscleSelection(muscle) {
@@ -53,7 +52,6 @@ const PlanSetup = () => {
       newMuscles.splice(newMuscles.indexOf(muscle), 1);
       setSelectedMuscles(newMuscles);
     }
-    console.log("Selected muscles:", newMuscles);
   }
 
   function handleDifficultySelection(difficulty) {
@@ -80,6 +78,50 @@ const PlanSetup = () => {
     if (prompt.trim() === "") {
       alert("Please describe your fitness goals.");
       return;
+    }
+
+    if (age) {
+      if (age < 0 || age > 120) {
+        alert("Please enter a valid age");
+        return;
+      }
+    }
+
+    if (weight) {
+      if (weight < 0 || weight > 1000) {
+        alert("Please enter a valid weight");
+        return;
+      }
+    }
+    if (height) {
+      if (height < 0 || height > 120) {
+        alert("Please enter a valid height");
+        return;
+      }
+    }
+    if (benchpressPR) {
+      if (benchpressPR < 0 || benchpressPR > 1000) {
+        alert("Please enter a valid benchpress PR");
+        return;
+      }
+    }
+    if (squatPR) {
+      if (squatPR < 0 || squatPR > 1000) {
+        alert("Please enter a valid squat PR");
+        return;
+      }
+    }
+    if (deadliftPR) {
+      if (deadliftPR < 0 || deadliftPR > 1000) {
+        alert("Please enter a valid deadlift PR");
+        return;
+      }
+    }
+    if (pullUpsPR) {
+      if (pullUpsPR < 0 || pullUpsPR > 1000) {
+        alert("Please enter a valid pull-ups PR");
+        return;
+      }
     }
   }
 
