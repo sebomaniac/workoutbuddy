@@ -16,6 +16,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  workoutPlan: {
+    type: Schema.Types.ObjectId,
+    ref: 'WorkoutPlan'
+  }
 });
 
 module.exports = mongoose.model("User", userSchema);
