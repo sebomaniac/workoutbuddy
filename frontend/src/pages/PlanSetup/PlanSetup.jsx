@@ -2,10 +2,12 @@ import { motion } from "framer-motion";
 import ParticlesBackground from "../../components/ParticlesBackground";
 import styles from "./PlanSetup.module.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import MultipleSelector from "./components/MultipleSelector/MultipleSelector";
 import DifficultySelector from "./components/DifficultySelector/DifficultySelector";
 import PromptInput from "./components/PromptInput/PromptInput";
 import AdvancedSettings from "./components/AdvancedSettings/AdvancedSettings";
+import { generateWorkoutPlan } from "../../services/workout";
 
 const PlanSetup = () => {
   const types = ["cardio", "plyometrics", "strength", "stretching"]
@@ -29,8 +31,10 @@ const PlanSetup = () => {
   const [pullUpsPR, setPullUpsPR] = useState("");
 
   const [prompt, setPrompt] = useState("");
-
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+
+  const navigate = useNavigate();
 
   function handleTypeSelection(type) {
     const newTypes = selectedTypes.slice();
@@ -63,7 +67,7 @@ const PlanSetup = () => {
     }
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
     if (selectedTypes.length === 0) {
       alert("Please select at least one workout type.");
       return;
@@ -123,6 +127,51 @@ const PlanSetup = () => {
         alert("Please enter a valid pull-ups PR");
         return;
       }
+    }
+
+    setIsGenerating(true);
+
+    try {
+      const planData = {
+        selectedTypes,
+        selectedMuscles,
+        selectedDifficulty,
+        prompt,
+        gender: gender || undefined,
+        age: age ? parseInt(age) : undefined,
+        weight: weight ? parseFloat(weight) : undefined,
+        height: height ? parseFloat(height) : undefined,
+        benchpressPR: benchpressPR ? parseFloat(benchpressPR) : undefined,
+        squatPR: squatPR ? parseFloat(squatPR) : undefined,
+        deadliftPR: deadliftPR ? parseFloat(deadliftPR) : undefined,
+        pullUpsPR: pullUpsPR ? parseInt(pullUpsPR) : undefined,
+      };
+
+      const generatedPlan = await generateWorkoutPlan(planData);
+      
+      console.log("Workout plan generated successfully:", generatedPlan);
+      alert("Workout plan generated successfully! Redirecting to your dashboard...");
+      
+      // Navigate to dashboard page
+      navigate("/dashboard");
+      
+    } catch (error) {
+      console.error("Error generating workout plan:", error);
+      
+      let errorMessage = "Failed to generate workout plan. Please try again.";
+      
+      if (error.message.includes("No authentication token")) {
+        errorMessage = "Please log in to generate a workout plan.";
+        navigate("/login");
+      } else if (error.message.includes("Failed to fetch")) {
+        errorMessage = "Network error. Please check your connection and try again.";
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+      
+      alert(errorMessage);
+    } finally {
+      setIsGenerating(false);
     }
   }
 
@@ -192,7 +241,13 @@ const PlanSetup = () => {
               onChange={(e) => setPrompt(e.target.value)}
             />
           </div>
-          <button className={styles.submitButton} onClick={handleSubmit}>Submit</button>
+          <button 
+            className={styles.submitButton} 
+            onClick={handleSubmit}
+            disabled={isGenerating}
+          >
+            {isGenerating ? "Generating Plan..." : "Submit"}
+          </button>
         </motion.div>
       </div>
     </>
