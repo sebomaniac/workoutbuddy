@@ -240,3 +240,551 @@
     padding-right: 20px;
   }
 }
+
+/* Day selection controls */
+.daySelectionContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.daySelectionControls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.daySelectionLabel {
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+.daySelect {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  min-width: 120px;
+}
+
+.daySelectOption {
+  background-color: #333;
+  color: white;
+}
+
+.todayButton {
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.todayButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* Workout description with button */
+.workoutDescriptionWithButton {
+  margin-top: 10px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.viewWorkoutButton {
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(33, 150, 243, 0.3);
+}
+
+.viewWorkoutButton:hover {
+  background-color: #1976D2;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.4);
+}
+
+/* Plan card styling */
+.planCard {
+  font-size: 25px;
+  margin-bottom: 15px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.planCard:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.planCardDescription {
+  font-size: 20px;
+  margin-top: 8px;
+  opacity: 0.8;
+}
+
+.planCardDate {
+  font-size: 18px;
+  margin-top: 8px;
+  opacity: 0.6;
+}
+
+.planCardDays {
+  font-size: 16px;
+  margin-top: 8px;
+  opacity: 0.7;
+}
+
+.planCardHint {
+  font-size: 16px;
+  margin-top: 8px;
+  opacity: 0.5;
+  font-style: italic;
+}
+
+/* Empty state styling */
+.emptyPlansContainer {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.emptyPlansTitle {
+  font-size: 28px;
+  margin-bottom: 15px;
+  opacity: 0.8;
+}
+
+.emptyPlansDescription {
+  font-size: 18px;
+  opacity: 0.6;
+}
+
+/* Create plan button container */
+.createPlanButtonContainer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.createPlanButton {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 15px 25px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.createPlanButton:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(76, 175, 80, 0.4);
+}
+
+.createPlanButtonIcon {
+  font-size: 20px;
+}
+
+/* Modal overlay */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+/* Modal content */
+.modalContent {
+  background-color: #1a1a1a;
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Modal header */
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.modalTitle {
+  font-size: 32px;
+  margin: 0;
+  color: #fff;
+}
+
+.modalCloseButton {
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal description */
+.modalDescription {
+  font-size: 18px;
+  margin-bottom: 20px;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+/* Modal info grid */
+.modalInfoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.modalInfoCard {
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+/* Modal section header */
+.modalSectionHeader {
+  font-size: 24px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 10px;
+}
+
+/* Modal days grid */
+.modalDaysGrid {
+  display: grid;
+  gap: 20px;
+}
+
+/* Day card in modal */
+.modalDayCard {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modalDayTitle {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #4CAF50;
+}
+
+.modalRestDay {
+  font-size: 16px;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+/* Exercise sections */
+.modalExerciseSection {
+  margin-bottom: 15px;
+}
+
+.modalExerciseSectionTitle {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.modalExerciseSectionTitleWarmup {
+  color: #FF9800;
+}
+
+.modalExerciseSectionTitleMain {
+  color: #2196F3;
+}
+
+.modalExerciseSectionTitleCooldown {
+  color: #9C27B0;
+}
+
+.modalExerciseItem {
+  margin-left: 15px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.modalExerciseItemMain {
+  margin-left: 15px;
+  margin-bottom: 12px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 5px;
+  border-left: 3px solid #2196F3;
+}
+
+.modalExerciseName {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.modalExerciseType {
+  font-size: 14px;
+  font-weight: normal;
+  margin-left: 10px;
+  opacity: 0.7;
+}
+
+.modalExerciseDetails {
+  margin-top: 5px;
+  opacity: 0.9;
+  font-size: 14px;
+}
+
+.modalExerciseDetailsMain {
+  margin-top: 5px;
+  opacity: 0.9;
+  font-size: 14px;
+}
+
+.modalExerciseNotes {
+  margin-left: 15px;
+  opacity: 0.8;
+}
+
+.modalExerciseNotesMain {
+  margin-top: 5px;
+  opacity: 0.7;
+  font-style: italic;
+  font-size: 13px;
+}
+
+/* Day notes */
+.modalDayNotes {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: rgba(255, 193, 7, 0.1);
+  border-radius: 5px;
+  border-left: 3px solid #FFC107;
+}
+
+/* Empty day message */
+.modalEmptyDay {
+  font-size: 16px;
+  opacity: 0.6;
+  font-style: italic;
+}
+
+/* Empty plan message */
+.modalEmptyPlan {
+  font-size: 18px;
+  opacity: 0.6;
+  text-align: center;
+  padding: 40px;
+}
+
+/* Day workout modal specific styles */
+.dayWorkoutModalContent {
+  background-color: #1a1a1a;
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.dayWorkoutPlanInfo {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: rgba(76, 175, 80, 0.1);
+  border-radius: 10px;
+  border-left: 4px solid #4CAF50;
+}
+
+.dayWorkoutRestDay {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+}
+
+.dayWorkoutRestDayTitle {
+  font-size: 24px;
+  margin-bottom: 15px;
+  opacity: 0.8;
+}
+
+.dayWorkoutRestDayMessage {
+  opacity: 0.7;
+}
+
+.dayWorkoutSection {
+  margin-bottom: 25px;
+}
+
+.dayWorkoutSectionTitle {
+  font-size: 20px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid;
+  padding-bottom: 5px;
+}
+
+.dayWorkoutSectionTitleWarmup {
+  color: #FF9800;
+  border-bottom-color: #FF9800;
+}
+
+.dayWorkoutSectionTitleMain {
+  color: #2196F3;
+  border-bottom-color: #2196F3;
+}
+
+.dayWorkoutSectionTitleCooldown {
+  color: #9C27B0;
+  border-bottom-color: #9C27B0;
+}
+
+.dayWorkoutExerciseCard {
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 3px solid;
+}
+
+.dayWorkoutExerciseCardWarmup {
+  background-color: rgba(255, 152, 0, 0.05);
+  border-left-color: #FF9800;
+}
+
+.dayWorkoutExerciseCardMain {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: rgba(33, 150, 243, 0.05);
+  border-radius: 10px;
+  border-left: 4px solid #2196F3;
+}
+
+.dayWorkoutExerciseCardCooldown {
+  background-color: rgba(156, 39, 176, 0.05);
+  border-left-color: #9C27B0;
+}
+
+.dayWorkoutExerciseName {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.dayWorkoutExerciseNameMain {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #2196F3;
+}
+
+.dayWorkoutExerciseType {
+  font-size: 14px;
+  font-weight: normal;
+  margin-left: 10px;
+  opacity: 0.7;
+}
+
+.dayWorkoutExerciseTypeMain {
+  font-size: 16px;
+  font-weight: normal;
+  margin-left: 10px;
+  opacity: 0.7;
+}
+
+.dayWorkoutExerciseDetails {
+  margin-bottom: 5px;
+  opacity: 0.9;
+  font-size: 16px;
+}
+
+.dayWorkoutExerciseDetailsMain {
+  margin-bottom: 10px;
+  font-size: 16px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 5px;
+}
+
+.dayWorkoutExerciseNotes {
+  opacity: 0.7;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.dayWorkoutExerciseNotesMain {
+  opacity: 0.8;
+  font-style: italic;
+  font-size: 15px;
+  padding: 8px;
+  background-color: rgba(255, 193, 7, 0.1);
+  border-radius: 5px;
+}
+
+.dayWorkoutDayNotes {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: rgba(255, 193, 7, 0.1);
+  border-radius: 10px;
+  border-left: 4px solid #FFC107;
+}
+
+.dayWorkoutDayNotesTitle {
+  font-size: 16px;
+}
+
+.dayWorkoutDayNotesContent {
+  margin-top: 8px;
+  font-size: 15px;
+}
+
+.dayWorkoutEmptyMessage {
+  font-size: 18px;
+  opacity: 0.6;
+  text-align: center;
+  padding: 40px;
+}
