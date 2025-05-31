@@ -2,11 +2,13 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 const router = require("express").Router();
 const WorkoutPlan = require('../schemas/workoutPlan.schema');
 const { fetchExercisesFromNinjas } = require('../utils/ninjas.js');
-
+const requireAuth = require('../middleware/requireAuth.js');
 require('dotenv').config();
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+
+router.use(requireAuth);
 
 // Define workout plan generation instructions
 const workoutPlanInstructions = `
@@ -67,7 +69,8 @@ Be specific with exercise names, sets, reps, and include appropriate notes for f
 
 router.get("/all-plans", async (req, res) => {
     try {
-        const workoutPlans = await WorkoutPlan.find();
+        const userID = req.user.id;
+        const workoutPlans = await WorkoutPlan.find({ userID: userID });
         res.status(200).json(workoutPlans);
     } catch (error) {
         console.error('Error getting plans:', error);
@@ -78,6 +81,7 @@ router.get("/all-plans", async (req, res) => {
 router.post("/create-plan", async (req, res) => {
     try {
         const { prompt, type, muscles, difficulty } = req.body;
+        const userID = req.user.id;
 
         let exerciseList = [];
 
@@ -126,6 +130,7 @@ router.post("/create-plan", async (req, res) => {
         
         const newPlan = new WorkoutPlan({
             name: planData.name,
+            userID: userID,
             description: planData.description,
             startDate: req.body.startDate || new Date(),
             days: planData.days
@@ -142,14 +147,10 @@ router.post("/create-plan", async (req, res) => {
 router.post("/edit-plan", async (req, res) => {
     try {
         const { planId, name, description, startDate, days } = req.body;
-        
+        const userID = req.user.id;
+
         if (!planId) {
             return res.status(400).json({ error: "Plan ID is required" });
-        }
-        
-        const existingPlan = await WorkoutPlan.findById(planId);
-        if (!existingPlan) {
-            return res.status(404).json({ error: "Workout plan not found" });
         }
         
         const updateData = {};
@@ -161,11 +162,15 @@ router.post("/edit-plan", async (req, res) => {
             updateData.days = days;
         }
         
-        const workoutPlan = await WorkoutPlan.findByIdAndUpdate(
-            planId,
+        const workoutPlan = await WorkoutPlan.findOneAndUpdate(
+            { _id: planId, userID: userID },
             updateData,
             { new: true, runValidators: true }
         );
+        
+        if (!workoutPlan) {
+            return res.status(404).json({ error: "Workout plan not found or unauthorized" });
+        }
         
         res.status(200).json(workoutPlan);
     } catch (error) {
@@ -177,17 +182,21 @@ router.post("/edit-plan", async (req, res) => {
 router.delete("/delete-plan", async (req, res) => {
     try {
         const { planId } = req.body;
-        
+        const userID = req.user.id;
+
         if (!planId) {
             return res.status(400).json({ error: "Plan ID is required" });
         }
         
-        const existingPlan = await WorkoutPlan.findById(planId);
-        if (!existingPlan) {
-            return res.status(404).json({ error: "Workout plan not found" });
+        const workoutPlan = await WorkoutPlan.findOneAndDelete({ 
+            _id: planId, 
+            userID: userID
+        });
+        
+        if (!workoutPlan) {
+            return res.status(404).json({ error: "Workout plan not found or unauthorized" });
         }
         
-        const workoutPlan = await WorkoutPlan.findByIdAndDelete(planId);
         res.status(200).json({ message: "Workout plan deleted successfully", deletedPlan: workoutPlan });
     } catch (error) {
         console.error('Error deleting plan:', error);

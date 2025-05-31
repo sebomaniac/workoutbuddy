@@ -35,6 +35,7 @@ const daySchema = new Schema({
 const workoutPlanSchema = new Schema({
   name:        { type: String, required: true },
   description: String,
+  userID: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
   startDate:   Date,
   days: {
     type: [daySchema],
