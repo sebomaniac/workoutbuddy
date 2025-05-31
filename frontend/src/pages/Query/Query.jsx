@@ -24,7 +24,7 @@ function Query() {
 
       <div className={styles.mainContent}>
         <div className={styles.queryBuilder}>
-          <div className={styles.sectionTitle}>Build Your Workout Query</div>
+          <div className={styles.sectionTitle}>Build Your Exercise Query</div>
           
           <div className={styles.queryForm}>
             <div className={styles.filterSection}>
@@ -50,17 +50,7 @@ function Query() {
               </select>
             </div>
 
-            <div className={styles.filterSection}>
-              <label className={styles.label}>Difficulty Level:</label>
-              <select className={styles.select}>
-                <option>Select difficulty...</option>
-                <option>Beginner</option>
-                <option>Intermediate</option>
-                <option>Advanced</option>
-              </select>
-            </div>
-
-            <button className={styles.queryButton}>Generate Workout</button>
+            <button className={styles.queryButton}>Find Exercise</button>
           </div>
 
           <div className={styles.resultsArea}>
