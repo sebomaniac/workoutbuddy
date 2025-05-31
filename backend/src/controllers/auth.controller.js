@@ -2,6 +2,7 @@ const router = require("express").Router();
 const User = require("../schemas/user.schema");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const requireAuth = require("../middleware/requireAuth");
 
 const JWT_SECRET = process.env.JWT_SECRET || "key";
 
@@ -21,7 +22,15 @@ router.post("/auth/signup", async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1h" });
 
-    res.status(201).json({ token });
+    res.status(201).json({
+      message: "Signup successful",
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+      }
+    });
   } catch (err) {
     res.status(500).json({ error: "Failed to create user" });
   }
@@ -46,6 +55,24 @@ router.post("/auth/login", async (req, res) => {
         name: user.name,
         email: user.email,
       },
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Get current user data
+router.get("/auth/me", requireAuth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    
+    res.status(200).json({
+      id: user._id,
+      name: user.name,
+      email: user.email
     });
   } catch (err) {
     res.status(500).json({ error: err.message });

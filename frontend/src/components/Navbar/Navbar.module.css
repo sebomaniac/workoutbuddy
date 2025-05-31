@@ -1,0 +1,55 @@
+.navigation {
+  align-self: start;
+  display: flex;
+  align-items: stretch;
+  gap: 33px;
+  font-size: 25px;
+  white-space: nowrap;
+  flex: 0 1 auto;
+}
+
+.navLink {
+  color: rgba(255, 255, 255, 1);
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  font-weight: 300;
+  position: relative;
+}
+
+.navLink:hover {
+  color: rgba(192, 132, 252, 1);
+  background-color: rgba(192, 132, 252, 0.1);
+}
+
+.navLink.active {
+  color: rgba(192, 132, 252, 1);
+  background-color: rgba(192, 132, 252, 0.15);
+  font-weight: 400;
+}
+
+.navLink.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 2px;
+  background: rgba(192, 132, 252, 1);
+  border-radius: 1px;
+}
+
+@media (max-width: 991px) {
+  .navigation {
+    white-space: initial;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .navLink {
+    font-size: 20px;
+    padding: 8px 15px;
+  }
+} 

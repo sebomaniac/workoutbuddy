@@ -17,3 +17,21 @@ export async function login({ email, password }) {
   });
   return res.json();
 }
+
+export async function getCurrentUser() {
+  const token = localStorage.getItem("token");
+  if (!token) return null;
+  
+  try {
+    const res = await fetch(`${API_URL}/auth/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    if (!res.ok) throw new Error("Failed to get user data");
+    return res.json();
+  } catch (error) {
+    console.error("Error getting current user:", error);
+    return null;
+  }
+}

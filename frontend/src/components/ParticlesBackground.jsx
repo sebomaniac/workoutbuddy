@@ -3,12 +3,12 @@
 // Preset: https://github.com/tsparticles/presets/tree/main/presets/links#readme
 
 /* adust particles so there's less lol*/
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, memo } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 // import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
 import { loadLinksPreset } from "@tsparticles/preset-links";
 
-const ParticlesBackground = () => {
+const ParticlesBackground = memo(() => {
   const [init, setInit] = useState(false);
 
   // this should be run only once per application lifetime
@@ -80,6 +80,8 @@ const ParticlesBackground = () => {
   }
 
   return <></>;
-};
+});
+
+ParticlesBackground.displayName = 'ParticlesBackground';
 
 export default ParticlesBackground;

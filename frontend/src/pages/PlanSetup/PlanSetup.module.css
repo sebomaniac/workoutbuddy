@@ -81,3 +81,15 @@
     rgba(147, 51, 234, 1) 100%
   );
 }
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.submitButton:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}

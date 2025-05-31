@@ -1,0 +1,242 @@
+.dashboard {
+  background-color: rgba(13, 13, 13, 0.867);
+  padding: 57px 56px;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  max-width: 1103px;
+  align-items: stretch;
+  gap: 88px;
+  font-family:
+    Inter,
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 300;
+  flex-wrap: wrap;
+}
+
+.welcomeText {
+  font-size: 60px;
+  flex: 1;
+}
+
+.nameHighlight {
+  color: rgba(192, 132, 252, 1);
+}
+
+.navigation {
+  align-self: start;
+  display: flex;
+  align-items: stretch;
+  gap: 33px;
+  font-size: 25px;
+  white-space: nowrap;
+  flex: 0 1 auto;
+}
+
+.mainContent {
+  margin-top: 42px;
+}
+
+.contentWrapper {
+  gap: 20px;
+  display: flex;
+}
+
+.mainColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  line-height: normal;
+  width: 83%;
+  margin-left: 0;
+}
+
+.mainColumnContent {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: stretch;
+  font-family:
+    Inter,
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+  color: rgba(242, 242, 242, 1);
+  font-weight: 300;
+}
+
+.sectionTitle {
+  font-size: 40px;
+  align-self: start;
+}
+
+.mainColumnContent .sectionTitle {
+  font-weight: 500;
+}
+
+.mainColumnContent .sectionTitle:nth-child(3) {
+  margin-top: 40px;
+}
+
+.statsContent .sectionTitle {
+  color: rgba(242, 242, 242, 1);
+}
+
+.workoutCard {
+  border-radius: 20px;
+  background-color: rgba(217, 217, 217, 1);
+  margin-top: 26px;
+  padding: 33px 38px;
+  color: rgba(0, 0, 0, 1);
+  font-weight: 500;
+}
+
+.workoutTitle {
+  font-size: 45px;
+  margin-right: 42px;
+}
+
+.workoutDescription {
+  font-size: 30px;
+  margin-top: 18px;
+}
+
+.planContainer {
+  border-radius: 20px;
+  background-color: rgba(217, 217, 217, 1);
+  margin-top: 19px;
+  padding: 120px 70px 72px;
+  font-size: 45px;
+  color: rgba(0, 0, 0, 1);
+  font-weight: 500;
+}
+
+.statsColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  line-height: normal;
+  width: 17%;
+  margin-left: 20px;
+}
+
+.statsContent {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: stretch;
+  font-family:
+    Inter,
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 1);
+  font-weight: 500;
+}
+
+.statCard {
+  border-radius: 20px;
+  background-color: rgba(217, 217, 217, 1);
+  margin-top: 26px;
+  padding: 30px;
+  text-align: center;
+}
+
+.weeklyStreak {
+  padding: 77px 30px 50px;
+}
+
+.maxStat {
+  margin-top: 38px;
+  padding: 64px 34px;
+}
+
+.workoutDuration {
+  margin-top: 39px;
+  padding: 52px 34px;
+}
+
+@media (max-width: 991px) {
+  .dashboard {
+    padding: 57px 20px;
+  }
+
+  .header {
+    max-width: 100%;
+  }
+
+  .welcomeText {
+    max-width: 100%;
+    font-size: 40px;
+  }
+
+  .navigation {
+    white-space: initial;
+  }
+
+  .mainContent {
+    max-width: 100%;
+    margin-top: 40px;
+  }
+
+  .contentWrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .mainColumn {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .mainColumnContent {
+    max-width: 100%;
+    margin-top: 40px;
+  }
+
+  .workoutCard {
+    max-width: 100%;
+    padding: 33px 20px;
+  }
+
+  .workoutTitle {
+    max-width: 100%;
+    margin-right: 10px;
+    font-size: 40px;
+  }
+
+  .workoutDescription {
+    max-width: 100%;
+  }
+
+  .planContainer {
+    max-width: 100%;
+    padding: 100px 20px;
+    font-size: 40px;
+  }
+
+  .statsColumn {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .statsContent {
+    margin-top: 40px;
+  }
+
+  .statCard {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
