@@ -42,6 +42,7 @@ function Dashboard() {
               <div className={styles.graphContainer}>graph goes here</div>
             </div>
           </div>
+{/*
 
           <div className={styles.statsColumn}>
             <div className={styles.statsContent}>
@@ -57,6 +58,7 @@ function Dashboard() {
               </div>
             </div>
           </div>
+*/}
         </div>
       </div>
     </div>
