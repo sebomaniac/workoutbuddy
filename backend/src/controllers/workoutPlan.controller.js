@@ -70,7 +70,7 @@ Be specific with exercise names, sets, reps, and include appropriate notes for f
 router.get("/all-plans", async (req, res) => {
     try {
         const userID = req.user.id;
-        const workoutPlans = await WorkoutPlan.find({ userID: userID });
+        const workoutPlans = await WorkoutPlan.find({ userID: userID }).sort({ createdAt: -1 });
         res.status(200).json(workoutPlans);
     } catch (error) {
         console.error('Error getting plans:', error);
@@ -213,6 +213,117 @@ router.post("/add-settings", async (req, res) => {
   }
 
 })
+
+router.post("/generate-plan", async (req, res) => {
+    try {
+        const { 
+            selectedTypes, 
+            selectedMuscles, 
+            selectedDifficulty, 
+            prompt,
+            gender,
+            age,
+            weight,
+            height,
+            benchpressPR,
+            squatPR,
+            deadliftPR,
+            pullUpsPR 
+        } = req.body;
+        const userID = req.user.id;
+
+        // Validate required fields
+        if (!selectedTypes || selectedTypes.length === 0) {
+            return res.status(400).json({ error: "Please select at least one workout type" });
+        }
+        if (!selectedMuscles || selectedMuscles.length === 0) {
+            return res.status(400).json({ error: "Please select at least one muscle group" });
+        }
+        if (!selectedDifficulty) {
+            return res.status(400).json({ error: "Please select a difficulty level" });
+        }
+        if (!prompt || prompt.trim() === "") {
+            return res.status(400).json({ error: "Please describe your fitness goals" });
+        }
+
+        // Build the user context for Gemini
+        let userContext = `
+        Create a personalized 7-day workout plan with the following requirements:
+        
+        Workout Types: ${selectedTypes.join(', ')}
+        Target Muscle Groups: ${selectedMuscles.join(', ')}
+        Difficulty Level: ${selectedDifficulty}
+        User Goals: ${prompt}
+        `;
+        
+        if (gender || age || weight || height) {
+            userContext += "\n\nUser Profile:";
+            if (gender) userContext += `\n- Gender: ${gender}`;
+            if (age) userContext += `\n- Age: ${age} years`;
+            if (weight) userContext += `\n- Weight: ${weight}`;
+            if (height) userContext += `\n- Height: ${height}`;
+        }
+        
+        if (benchpressPR || squatPR || deadliftPR || pullUpsPR) {
+            userContext += "\n\nPersonal Records:";
+            if (benchpressPR) userContext += `\n- Bench Press: ${benchpressPR}`;
+            if (squatPR) userContext += `\n- Squat: ${squatPR}`;
+            if (deadliftPR) userContext += `\n- Deadlift: ${deadliftPR}`;
+            if (pullUpsPR) userContext += `\n- Pull-ups: ${pullUpsPR}`;
+        }
+        
+        userContext += `
+        
+        Requirements:
+        - Create exactly 7 days (dayIndex 0-6 for Sunday-Saturday)
+        - Include appropriate rest days
+        - For strength exercises: include sets, reps, and rest periods
+        - For cardio exercises: include duration or distance
+        - Include warm-up and cool-down sections where appropriate
+        - Exercise types must be: 'strength', 'cardio', or 'mobility'
+        - Weight units: 'lbs' or 'kg'
+        - Distance units: 'm', 'km', or 'mi'
+        - Duration and rest periods in seconds
+        - Provide specific exercise names and clear instructions
+        
+        ${workoutPlanInstructions}
+        `;
+        
+        const result = await model.generateContent(userContext);
+        const responseText = result.response.text();
+        const cleanedResponse = responseText.replace(/```(json)?|```/g, '').trim();
+    
+        let planData;
+        try {
+            planData = JSON.parse(cleanedResponse);
+            console.log("Successfully parsed JSON response");
+        } catch (parseError) {
+            console.error('Error parsing JSON response:', parseError);
+            console.log('Raw response:', responseText);
+            
+            // Create default plan data
+            planData = {
+                name: "Custom Workout Plan",
+                description: "Generated workout plan based on your preferences. The AI response couldn't be parsed properly.",
+                days: []
+            };
+        }
+        
+        const newPlan = new WorkoutPlan({
+            name: planData.name,
+            userID: userID,
+            description: planData.description,
+            startDate: new Date(),
+            days: planData.days
+        });
+        
+        const savedPlan = await newPlan.save();
+        res.status(201).json(savedPlan);
+    } catch (error) {
+        console.error('Error generating plan:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
 
 module.exports = router;
 
