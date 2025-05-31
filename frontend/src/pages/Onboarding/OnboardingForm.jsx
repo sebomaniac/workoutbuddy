@@ -1,48 +1,56 @@
 import styles from "./OnboardingForm.module.css";
 import ParticlesBackground from "../../components/ParticlesBackground";
 import { Link, useNavigate } from "react-router-dom";
-import { login, signup } from "../../services/auth";
+import { useAuth } from "../../contexts/AuthContext";
 import { useState } from "react";
 
 const OnboardingForm = ({ type }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [formError, setFormError] = useState("");
+  
+  const { login, signup, loading, error, clearError } = useAuth();
   const navigate = useNavigate();
 
-  async function handleLogin(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await login({ email, password });
-    if (res.token) {
-      localStorage.setItem("token", res.token);
-      alert("Login successful");
-      navigate("/dashboard");
-    } else {
-      alert(res.error || "Login failed");
-    }
-  }
+    setFormError("");
+    clearError();
 
-  async function handleSignup(e) {
-    e.preventDefault();
-    const res = await signup({ name, email, password });
-    if (res.token) {
-      localStorage.setItem("token", res.token);
-      alert("Signup successful");
-      navigate("/dashboard");
-    } else {
-      alert(res.error || "Signup failed");
+    try {
+      let result;
+      if (type === "Log In") {
+        result = await login({ email, password });
+      } else {
+        result = await signup({ name, email, password });
+      }
+
+      if (result.success) {
+        navigate("/dashboard");
+      } else {
+        setFormError(result.error || `${type} failed`);
+      }
+    } catch (err) {
+      setFormError(err.message || `${type} failed`);
     }
-  }
+  };
+
+  const displayError = formError || error;
 
   return (
     <>
       <ParticlesBackground />
       <div className={styles.formContainer}>
-        <form
-          onSubmit={type === "Log In" ? handleLogin : handleSignup}
-          className={styles.form}
-        >
+        <form onSubmit={handleSubmit} className={styles.form}>
           <h1 className={styles.title}>{type}</h1>
+          
+          {displayError && (
+            <div className={styles.errorMessage}>
+              {displayError}
+            </div>
+          )}
+          
           {type === "Sign Up" && (
             <input
               type="text"
@@ -50,6 +58,7 @@ const OnboardingForm = ({ type }) => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
+              disabled={loading}
             />
           )}
           <input
@@ -58,6 +67,7 @@ const OnboardingForm = ({ type }) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            disabled={loading}
           />
           <input
             type="password"
@@ -65,9 +75,14 @@ const OnboardingForm = ({ type }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            disabled={loading}
           />
-          <button className={styles.submit} type="submit">
-            {type}
+          <button 
+            className={styles.submit} 
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? "Loading..." : type}
           </button>
           {type === "Log In" ? (
             <Link className={styles.link} to="/signup">
@@ -83,4 +98,5 @@ const OnboardingForm = ({ type }) => {
     </>
   );
 };
+
 export default OnboardingForm;

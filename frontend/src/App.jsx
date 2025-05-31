@@ -1,14 +1,15 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import OnboardingForm from "./pages/Onboarding/OnboardingForm";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Landing from "./pages/Landing/Landing";
 import Setup from "./pages/PlanSetup/PlanSetup";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { AuthProvider } from "./contexts/AuthContext";
 import "./index.css";
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Router>
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -33,7 +34,7 @@ function App() {
           />
         </Routes>
       </Router>
-    </>
+    </AuthProvider>
   );
 }
 
