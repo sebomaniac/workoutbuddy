@@ -1,0 +1,120 @@
+.chat {
+  background-color: rgba(13, 13, 13, 0.867);
+  padding: 57px 56px;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  max-width: 1103px;
+  align-items: stretch;
+  gap: 88px;
+  font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 300;
+  flex-wrap: wrap;
+}
+
+.welcomeText {
+  font-size: 60px;
+  flex: 1;
+}
+
+.nameHighlight {
+  color: rgba(192, 132, 252, 1);
+}
+
+.mainContent {
+  margin-top: 42px;
+}
+
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  border-radius: 20px;
+  background-color: rgba(217, 217, 217, 0.1);
+  border: 1px solid rgba(192, 132, 252, 0.3);
+}
+
+.messageArea {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder {
+  color: rgba(242, 242, 242, 0.7);
+  font-size: 18px;
+  text-align: center;
+}
+
+.inputArea {
+  display: flex;
+  padding: 20px;
+  border-top: 1px solid rgba(192, 132, 252, 0.3);
+  gap: 15px;
+}
+
+.chatInput {
+  flex: 1;
+  padding: 15px 20px;
+  border-radius: 25px;
+  border: 1px solid rgba(192, 132, 252, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 1);
+  font-size: 16px;
+  outline: none;
+}
+
+.chatInput::placeholder {
+  color: rgba(242, 242, 242, 0.5);
+}
+
+.chatInput:focus {
+  border-color: rgba(192, 132, 252, 1);
+}
+
+.sendButton {
+  padding: 15px 30px;
+  border-radius: 25px;
+  border: none;
+  background: linear-gradient(90deg, #a020f0 18%, #6a0dad 78%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.sendButton:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+@media (max-width: 991px) {
+  .chat {
+    padding: 57px 20px;
+  }
+
+  .welcomeText {
+    font-size: 40px;
+  }
+
+  .chatContainer {
+    height: 50vh;
+  }
+
+  .inputArea {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .sendButton {
+    align-self: flex-end;
+  }
+} 

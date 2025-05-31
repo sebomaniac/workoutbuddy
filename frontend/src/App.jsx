@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import OnboardingForm from "./pages/Onboarding/OnboardingForm";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import Chat from "./pages/Chat/Chat";
+import Query from "./pages/Query/Query";
 import Landing from "./pages/Landing/Landing";
 import Setup from "./pages/PlanSetup/PlanSetup";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -21,6 +23,22 @@ function App() {
             element={
               <ProtectedRoute>
                 <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/chat"
+            element={
+              <ProtectedRoute>
+                <Chat />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/query"
+            element={
+              <ProtectedRoute>
+                <Query />
               </ProtectedRoute>
             }
           />

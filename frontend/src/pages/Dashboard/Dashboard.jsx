@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuth } from "../../contexts/AuthContext";
+import Navbar from "../../components/Navbar/Navbar";
 import styles from "./Dashboard.module.css";
 
 function Dashboard() {
@@ -18,11 +19,7 @@ function Dashboard() {
           Welcome back,{" "}
           <span className={styles.nameHighlight}>{userName}</span>
         </div>
-        <div className={styles.navigation}>
-          <div>Chat</div>
-          <div>Dashboard</div>
-          <div>Query</div>
-        </div>
+        <Navbar />
       </div>
 
       <div className={styles.mainContent}>
