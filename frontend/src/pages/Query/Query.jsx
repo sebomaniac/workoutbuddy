@@ -16,7 +16,7 @@ function Query() {
     <div className={styles.query}>
       <div className={styles.header}>
         <div className={styles.welcomeText}>
-          Query Builder,{" "}
+          Find an exercise,{" "}
           <span className={styles.nameHighlight}>{userName}</span>
         </div>
         <Navbar />
