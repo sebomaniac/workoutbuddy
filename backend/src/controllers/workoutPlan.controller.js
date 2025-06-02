@@ -80,19 +80,20 @@ router.get("/all-plans", async (req, res) => {
 
 router.post("/create-plan", async (req, res) => {
     try {
-        const { prompt, type, muscles, difficulty } = req.body;
+        const { prompt, types, muscles, difficulty } = req.body;
         const userID = req.user.id;
 
         let exerciseList = [];
 
-        if (Array.isArray(muscles)) {
-          for (const muscle of muscles) {
+        // if types or muscles are not arrays, convert them to be one
+        const typesArray = Array.isArray(types) ? types : [types];
+        const musclesArray = Array.isArray(muscles) ? muscles : [muscles];
+
+        for (const type of typesArray) {
+          for (const muscle of musclesArray) {
             const result = await fetchExercisesFromNinjas({ type, difficulty, muscle });
             exerciseList.push(...result);
           }
-        } else {
-            const result = await fetchExercisesFromNinjas({ type, difficulty, muscle: muscles });
-            exerciseList = result;
         }
 
         // turn the exercise list into a nice JSON string
