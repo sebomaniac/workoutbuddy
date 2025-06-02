@@ -19,6 +19,8 @@
 body {
   background: var(--background);
   margin: 2rem;
+  margin-left: 10rem;
+  margin-right: 10rem;
 }
 
 /* purple underline that grows from center Hooray!!
