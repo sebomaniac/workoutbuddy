@@ -78,7 +78,7 @@ const OnboardingForm = ({ type }) => {
             disabled={loading}
           />
           <button 
-            className={styles.submit} 
+            className={styles.onboardingButton} 
             type="submit"
             disabled={loading}
           >
