@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import Navbar from "../../components/Navbar/Navbar";
 import styles from "./Chat.module.css";
-import axios from "axios";
 import { getAllWorkoutPlans, chatWithAI } from "../../services/workout";
 
 function Chat() {
