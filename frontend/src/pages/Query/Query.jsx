@@ -25,14 +25,19 @@ function Query() {
   const [selectedMuscle, setSelectedMuscle] = useState("");
   const [selectedDifficulty, setSelectedDifficulty] = useState("");
 
+  const [exercises, setExercises] = useState([]);
+  const [error, setError] = useState(null);
+
   const handleQueryButtonClick = async () => {
     if (selectedType || selectedMuscle || selectedDifficulty) {
       try {
+        setError(null);
         const result = await getExercises({ type: selectedType, muscle: selectedMuscle, difficulty: selectedDifficulty });
-        const exerciseJSON = JSON.stringify(result, null, 2);
-        console.log("Exercise JSON:", exerciseJSON);
+        setExercises(result);
       } catch (error) {
+        setError("Failed to fetch exercises.");
         console.error(error);
+        setExercises([]);
       }
     } else {
       alert("Please select at least one filter option.");
@@ -95,11 +100,24 @@ function Query() {
             </div>
             <button className={styles.queryButton} onClick={handleQueryButtonClick}>Find Exercises</button>
           </div>
-
           <div className={styles.resultsArea}>
-            <div className={styles.placeholder}>
-              Build your query above to see personalized workout recommendations
-            </div>
+            {error && <div className={styles.error}>{error}</div>}
+            {exercises.length === 0 && !error && (
+              <div className={styles.placeholder}>
+                Build your query above to see personalized workout recommendations
+              </div>
+            )}
+            {exercises.length > 0 && (
+              <ul className={styles.exerciseList}>
+                {exercises.map((exercise, index) => (
+                  <li key={exercise.id || index} className={styles.exerciseList}>
+                    <div className={styles.exerciseName}>{exercise.name}</div>
+                    <div><span className={styles.exercisePoint}>Equipment: </span>{exercise.equipment}</div>
+                    <div><span className={styles.exercisePoint}>Instructions: </span>{exercise.instructions || "None"}</div>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       </div>

@@ -19,9 +19,9 @@ async function fetchExercisesFromNinjas(params) {
         }
         
         return await response.json();
-    } catch (err) {
-        console.error("Failed to fetch exercises:", err.message);
-        return [];
+    } catch (error) {
+        console.error(error);
+        throw error;
     }
 }
 

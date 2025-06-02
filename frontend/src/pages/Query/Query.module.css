@@ -2,6 +2,8 @@
   background-color: rgba(13, 13, 13, 0.867);
   padding: 57px 56px;
   overflow: hidden;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .header {
@@ -136,3 +138,29 @@
     font-size: 30px;
   }
 } 
+
+.exerciseList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem;
+  margin-bottom: 5rem;
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+.exerciseName {
+  font-weight: 600;
+  font-size: 2rem;
+  color: var(--text);
+}
+
+.exercisePoint {
+  font-style: italic;
+}
+
+.error {
+  color: var(--text);
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
