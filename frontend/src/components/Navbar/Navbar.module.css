@@ -1,9 +1,9 @@
 .navigation {
   align-self: start;
   display: flex;
-  align-items: stretch;
+  align-items: center;
   gap: 33px;
-  font-size: 25px;
+  font-size: 18px;
   white-space: nowrap;
   flex: 0 1 auto;
 }
@@ -30,7 +30,7 @@
 }
 
 .navLink.active::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -52,4 +52,4 @@
     font-size: 20px;
     padding: 8px 15px;
   }
-} 
+}

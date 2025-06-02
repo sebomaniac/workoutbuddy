@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./Navbar.module.css";
+import LogoutButton from "../Buttons/LogoutButton";
 
 const Navbar = () => {
   const location = useLocation();
@@ -31,6 +32,7 @@ const Navbar = () => {
       >
         Query
       </Link>
+      <LogoutButton />
     </nav>
   );
 };
