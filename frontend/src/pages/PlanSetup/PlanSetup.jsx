@@ -34,6 +34,8 @@ const PlanSetup = () => {
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
+  const [weightUnit, setWeightUnit] = useState("lbs");
+
   const navigate = useNavigate();
 
   function handleTypeSelection(type) {
@@ -145,6 +147,7 @@ const PlanSetup = () => {
         squatPR: squatPR ? parseFloat(squatPR) : undefined,
         deadliftPR: deadliftPR ? parseFloat(deadliftPR) : undefined,
         pullUpsPR: pullUpsPR ? parseInt(pullUpsPR) : undefined,
+        weightUnit,
       };
 
       const generatedPlan = await generateWorkoutPlan(planData);
@@ -203,6 +206,18 @@ const PlanSetup = () => {
                 selectedDifficulty={selectedDifficulty}
                 onSelect={handleDifficultySelection}
               />
+              <div className={styles.weightUnitRow}>
+                <label htmlFor="weightUnit" className={styles.weightUnitLabel}>Weight Unit:</label>
+                <select
+                  id="weightUnit"
+                  value={weightUnit}
+                  onChange={e => setWeightUnit(e.target.value)}
+                  className={styles.weightUnitSelect}
+                >
+                  <option value="lbs">Pounds (lbs)</option>
+                  <option value="kg">Kilograms (kg)</option>
+                </select>
+              </div>
             </div>
             <div className={styles.upperRightContainer}>
               <MultipleSelector

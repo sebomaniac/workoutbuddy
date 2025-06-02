@@ -77,29 +77,24 @@ function Dashboard() {
     setShowDayWorkoutModal(false);
   };
 
-  const formatExercise = (exercise) => {
+  const formatExercise = (exercise, plan) => {
     const parts = [];
-    
     if (exercise.sets && exercise.reps) {
       parts.push(`${exercise.sets} sets × ${exercise.reps} reps`);
     }
-    
     if (exercise.weight) {
-      parts.push(`${exercise.weight} ${exercise.weightUnit || 'lbs'}`);
+      const unit = plan?.weightUnit || exercise.weightUnit || 'lbs';
+      parts.push(`${exercise.weight} ${unit}`);
     }
-    
     if (exercise.duration) {
       parts.push(`${exercise.duration} seconds`);
     }
-    
     if (exercise.distance) {
       parts.push(`${exercise.distance} ${exercise.distanceUnit || 'km'}`);
     }
-    
     if (exercise.restBetweenSets) {
       parts.push(`Rest: ${exercise.restBetweenSets}s`);
     }
-    
     return parts.join(' • ');
   };
 
@@ -348,7 +343,7 @@ function Dashboard() {
                             {day.warmUp.exercises.map((exercise, exIndex) => (
                               <div key={exIndex} className={styles.modalExerciseItem}>
                                 • <strong>{exercise.name}</strong> ({exercise.type})
-                                {formatExercise(exercise) && <div className={styles.modalExerciseNotes}>{formatExercise(exercise)}</div>}
+                                {formatExercise(exercise, selectedPlan) && <div className={styles.modalExerciseNotes}>{formatExercise(exercise, selectedPlan)}</div>}
                                 {exercise.notes && <div className={styles.modalExerciseNotes}>Note: {exercise.notes}</div>}
                               </div>
                             ))}
@@ -369,9 +364,9 @@ function Dashboard() {
                                     ({exercise.type})
                                   </span>
                                 </div>
-                                {formatExercise(exercise) && (
+                                {formatExercise(exercise, selectedPlan) && (
                                   <div className={styles.modalExerciseDetailsMain}>
-                                    {formatExercise(exercise)}
+                                    {formatExercise(exercise, selectedPlan)}
                                   </div>
                                 )}
                                 {exercise.notes && (
@@ -393,7 +388,7 @@ function Dashboard() {
                             {day.coolDown.exercises.map((exercise, exIndex) => (
                               <div key={exIndex} className={styles.modalExerciseItem}>
                                 • <strong>{exercise.name}</strong> ({exercise.type})
-                                {formatExercise(exercise) && <div className={styles.modalExerciseNotes}>{formatExercise(exercise)}</div>}
+                                {formatExercise(exercise, selectedPlan) && <div className={styles.modalExerciseNotes}>{formatExercise(exercise, selectedPlan)}</div>}
                                 {exercise.notes && <div className={styles.modalExerciseNotes}>Note: {exercise.notes}</div>}
                               </div>
                             ))}
@@ -474,9 +469,9 @@ function Dashboard() {
                             ({exercise.type})
                           </span>
                         </div>
-                        {formatExercise(exercise) && (
+                        {formatExercise(exercise, selectedDayWorkout.plan) && (
                           <div className={styles.dayWorkoutExerciseDetails}>
-                            {formatExercise(exercise)}
+                            {formatExercise(exercise, selectedDayWorkout.plan)}
                           </div>
                         )}
                         {exercise.notes && (
@@ -503,9 +498,9 @@ function Dashboard() {
                             ({exercise.type})
                           </span>
                         </div>
-                        {formatExercise(exercise) && (
+                        {formatExercise(exercise, selectedDayWorkout.plan) && (
                           <div className={styles.dayWorkoutExerciseDetailsMain}>
-                            📊 {formatExercise(exercise)}
+                            📊 {formatExercise(exercise, selectedDayWorkout.plan)}
                           </div>
                         )}
                         {exercise.notes && (
@@ -532,9 +527,9 @@ function Dashboard() {
                             ({exercise.type})
                           </span>
                         </div>
-                        {formatExercise(exercise) && (
+                        {formatExercise(exercise, selectedDayWorkout.plan) && (
                           <div className={styles.dayWorkoutExerciseDetails}>
-                            {formatExercise(exercise)}
+                            {formatExercise(exercise, selectedDayWorkout.plan)}
                           </div>
                         )}
                         {exercise.notes && (

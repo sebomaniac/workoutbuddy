@@ -228,7 +228,8 @@ router.post("/generate-plan", async (req, res) => {
             benchpressPR,
             squatPR,
             deadliftPR,
-            pullUpsPR 
+            pullUpsPR,
+            weightUnit
         } = req.body;
         const userID = req.user.id;
 
@@ -254,6 +255,8 @@ router.post("/generate-plan", async (req, res) => {
         Target Muscle Groups: ${selectedMuscles.join(', ')}
         Difficulty Level: ${selectedDifficulty}
         User Goals: ${prompt}
+        Preferred weight unit: ${weightUnit || 'lbs'}
+        All weights in the plan should be in ${weightUnit || 'lbs'}.
         `;
         
         if (gender || age || weight || height) {
@@ -314,13 +317,64 @@ router.post("/generate-plan", async (req, res) => {
             userID: userID,
             description: planData.description,
             startDate: new Date(),
-            days: planData.days
+            days: planData.days,
+            weightUnit: weightUnit || 'lbs',
         });
         
         const savedPlan = await newPlan.save();
         res.status(201).json(savedPlan);
     } catch (error) {
         console.error('Error generating plan:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+router.post("/chat", async (req, res) => {
+    try {
+        const { message, planId } = req.body;
+        const userID = req.user.id;
+
+        if (!message || !planId) {
+            return res.status(400).json({ error: "Message and plan ID are required" });
+        }
+
+        const workoutPlan = await WorkoutPlan.findOne({ _id: planId, userID: userID });
+        if (!workoutPlan) {
+            return res.status(404).json({ error: "Workout plan not found or unauthorized" });
+        }
+
+        // Create a simplified version of the plan with only essential information
+        const simplifiedPlan = {
+            name: workoutPlan.name,
+            weightUnit: workoutPlan.weightUnit || 'lbs',
+            days: workoutPlan.days.map(day => ({
+                dayName: day.dayName,
+                isRestDay: day.isRestDay,
+                exercises: day.exercises.map(ex => ({
+                    name: ex.name,
+                    type: ex.type,
+                    sets: ex.sets,
+                    reps: ex.reps,
+                    weight: ex.weight
+                }))
+            }))
+        };
+
+        const planContext = `
+        You are a fitness trainer assistant. User's workout plan:
+        ${JSON.stringify(simplifiedPlan)}
+        Question: ${message}
+        Provide a brief answer (5-10 sentences) in plain text with no special formatting.`;
+
+        const result = await model.generateContent(planContext);
+        const response = result.response.text();
+
+        res.status(200).json({ 
+            message: response,
+            timestamp: new Date()
+        });
+    } catch (error) {
+        console.error('Error in chat:', error);
         res.status(500).json({ error: error.message });
     }
 });

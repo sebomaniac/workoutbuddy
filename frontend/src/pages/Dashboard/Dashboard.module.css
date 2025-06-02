@@ -303,7 +303,7 @@
 }
 
 .viewWorkoutButton {
-  background-color: #2196F3;
+  background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%);
   color: white;
   border: none;
   border-radius: 8px;
@@ -312,13 +312,13 @@
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(33, 150, 243, 0.3);
+  box-shadow: 0 2px 4px rgba(124, 58, 237, 0.3);
 }
 
 .viewWorkoutButton:hover {
-  background-color: #1976D2;
+  background: linear-gradient(135deg, #8b45f9 0%, #a855f7 100%);
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.4);
+  box-shadow: 0 4px 8px rgba(124, 58, 237, 0.4);
 }
 
 /* Plan card styling */

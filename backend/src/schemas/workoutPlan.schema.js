@@ -39,7 +39,8 @@ const workoutPlanSchema = new Schema({
   startDate:   Date,
   days: {
     type: [daySchema],
-  }
+  },
+  weightUnit: { type: String, enum: ['lbs', 'kg'], default: 'lbs' },
 }, { timestamps: true });
 
 module.exports = mongoose.model('WorkoutPlan', workoutPlanSchema);
