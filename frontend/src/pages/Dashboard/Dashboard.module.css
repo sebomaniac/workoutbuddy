@@ -10,12 +10,7 @@
   max-width: 1103px;
   align-items: stretch;
   gap: 88px;
-  font-family:
-    Inter,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
+  font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
   color: rgba(255, 255, 255, 1);
   font-weight: 300;
   flex-wrap: wrap;
@@ -54,7 +49,7 @@
   flex-direction: column;
   align-items: stretch;
   line-height: normal;
-  width: 83%;
+  width: 100%;
   margin-left: 0;
 }
 
@@ -63,12 +58,7 @@
   flex-grow: 1;
   flex-direction: column;
   align-items: stretch;
-  font-family:
-    Inter,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
+  font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
   color: rgba(242, 242, 242, 1);
   font-weight: 300;
 }
@@ -133,12 +123,7 @@
   flex-grow: 1;
   flex-direction: column;
   align-items: stretch;
-  font-family:
-    Inter,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
+  font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 20px;
   color: rgba(0, 0, 0, 1);
   font-weight: 500;
@@ -516,7 +501,7 @@
 .modalDayTitle {
   font-size: 20px;
   margin-bottom: 15px;
-  color: #4CAF50;
+  color: #4caf50;
 }
 
 .modalRestDay {
@@ -536,15 +521,15 @@
 }
 
 .modalExerciseSectionTitleWarmup {
-  color: #FF9800;
+  color: #ff9800;
 }
 
 .modalExerciseSectionTitleMain {
-  color: #2196F3;
+  color: #2196f3;
 }
 
 .modalExerciseSectionTitleCooldown {
-  color: #9C27B0;
+  color: #9c27b0;
 }
 
 .modalExerciseItem {
@@ -559,7 +544,7 @@
   padding: 10px;
   background-color: rgba(255, 255, 255, 0.03);
   border-radius: 5px;
-  border-left: 3px solid #2196F3;
+  border-left: 3px solid #2196f3;
 }
 
 .modalExerciseName {
@@ -604,7 +589,7 @@
   padding: 10px;
   background-color: rgba(255, 193, 7, 0.1);
   border-radius: 5px;
-  border-left: 3px solid #FFC107;
+  border-left: 3px solid #ffc107;
 }
 
 /* Empty day message */
@@ -639,7 +624,7 @@
   padding: 15px;
   background-color: rgba(76, 175, 80, 0.1);
   border-radius: 10px;
-  border-left: 4px solid #4CAF50;
+  border-left: 4px solid #4caf50;
 }
 
 .dayWorkoutRestDay {
@@ -670,18 +655,18 @@
 }
 
 .dayWorkoutSectionTitleWarmup {
-  color: #FF9800;
-  border-bottom-color: #FF9800;
+  color: #ff9800;
+  border-bottom-color: #ff9800;
 }
 
 .dayWorkoutSectionTitleMain {
-  color: #2196F3;
-  border-bottom-color: #2196F3;
+  color: #2196f3;
+  border-bottom-color: #2196f3;
 }
 
 .dayWorkoutSectionTitleCooldown {
-  color: #9C27B0;
-  border-bottom-color: #9C27B0;
+  color: #9c27b0;
+  border-bottom-color: #9c27b0;
 }
 
 .dayWorkoutExerciseCard {
@@ -693,7 +678,7 @@
 
 .dayWorkoutExerciseCardWarmup {
   background-color: rgba(255, 152, 0, 0.05);
-  border-left-color: #FF9800;
+  border-left-color: #ff9800;
 }
 
 .dayWorkoutExerciseCardMain {
@@ -701,12 +686,12 @@
   padding: 20px;
   background-color: rgba(33, 150, 243, 0.05);
   border-radius: 10px;
-  border-left: 4px solid #2196F3;
+  border-left: 4px solid #2196f3;
 }
 
 .dayWorkoutExerciseCardCooldown {
   background-color: rgba(156, 39, 176, 0.05);
-  border-left-color: #9C27B0;
+  border-left-color: #9c27b0;
 }
 
 .dayWorkoutExerciseName {
@@ -719,7 +704,7 @@
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #2196F3;
+  color: #2196f3;
 }
 
 .dayWorkoutExerciseType {
@@ -770,7 +755,7 @@
   padding: 15px;
   background-color: rgba(255, 193, 7, 0.1);
   border-radius: 10px;
-  border-left: 4px solid #FFC107;
+  border-left: 4px solid #ffc107;
 }
 
 .dayWorkoutDayNotesTitle {
