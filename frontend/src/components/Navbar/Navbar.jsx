@@ -7,22 +7,27 @@ const Navbar = () => {
 
   return (
     <nav className={styles.navigation}>
-
-      <Link 
-        to="/dashboard" 
-        className={`${styles.navLink} ${location.pathname === '/dashboard' ? styles.active : ''}`}
+      <Link
+        to="/dashboard"
+        className={`underline-animated ${
+          location.pathname === "/dashboard" ? styles.active : ""
+        }`}
       >
         Dashboard
       </Link>
-      <Link 
-        to="/chat" 
-        className={`${styles.navLink} ${location.pathname === '/chat' ? styles.active : ''}`}
+      <Link
+        to="/chat"
+        className={`underline-animated ${
+          location.pathname === "/chat" ? styles.active : ""
+        }`}
       >
         Chat
       </Link>
-      <Link 
-        to="/query" 
-        className={`${styles.navLink} ${location.pathname === '/query' ? styles.active : ''}`}
+      <Link
+        to="/query"
+        className={`underline-animated ${
+          location.pathname === "/query" ? styles.active : ""
+        }`}
       >
         Query
       </Link>
@@ -30,4 +35,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar; 
+export default Navbar;
