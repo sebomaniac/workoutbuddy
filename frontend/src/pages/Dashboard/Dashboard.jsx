@@ -77,29 +77,24 @@ function Dashboard() {
     setShowDayWorkoutModal(false);
   };
 
-  const formatExercise = (exercise) => {
+  const formatExercise = (exercise, plan) => {
     const parts = [];
-    
     if (exercise.sets && exercise.reps) {
       parts.push(`${exercise.sets} sets × ${exercise.reps} reps`);
     }
-    
     if (exercise.weight) {
-      parts.push(`${exercise.weight} ${exercise.weightUnit || 'lbs'}`);
+      const unit = plan?.weightUnit || exercise.weightUnit || 'lbs';
+      parts.push(`${exercise.weight} ${unit}`);
     }
-    
     if (exercise.duration) {
-      parts.push(`${exercise.duration} minutes`);
+      parts.push(`${exercise.duration} seconds`);
     }
-    
     if (exercise.distance) {
       parts.push(`${exercise.distance} ${exercise.distanceUnit || 'km'}`);
     }
-    
     if (exercise.restBetweenSets) {
       parts.push(`Rest: ${exercise.restBetweenSets}s`);
     }
-    
     return parts.join(' • ');
   };
 
@@ -343,12 +338,12 @@ function Dashboard() {
                         {day.warmUp && day.warmUp.exercises && day.warmUp.exercises.length > 0 && (
                           <div className={styles.modalExerciseSection}>
                             <h5 className={`${styles.modalExerciseSectionTitle} ${styles.modalExerciseSectionTitleWarmup}`}>
-                              Warm Up {day.warmUp.totalDuration && `(${day.warmUp.totalDuration} min)`}
+                              Warm Up {day.warmUp.totalDuration && `(${day.warmUp.totalDuration} sec)`}
                             </h5>
                             {day.warmUp.exercises.map((exercise, exIndex) => (
                               <div key={exIndex} className={styles.modalExerciseItem}>
                                 • <strong>{exercise.name}</strong> ({exercise.type})
-                                {formatExercise(exercise) && <div className={styles.modalExerciseNotes}>{formatExercise(exercise)}</div>}
+                                {formatExercise(exercise, selectedPlan) && <div className={styles.modalExerciseNotes}>{formatExercise(exercise, selectedPlan)}</div>}
                                 {exercise.notes && <div className={styles.modalExerciseNotes}>Note: {exercise.notes}</div>}
                               </div>
                             ))}
@@ -369,9 +364,9 @@ function Dashboard() {
                                     ({exercise.type})
                                   </span>
                                 </div>
-                                {formatExercise(exercise) && (
+                                {formatExercise(exercise, selectedPlan) && (
                                   <div className={styles.modalExerciseDetailsMain}>
-                                    {formatExercise(exercise)}
+                                    {formatExercise(exercise, selectedPlan)}
                                   </div>
                                 )}
                                 {exercise.notes && (
@@ -388,12 +383,12 @@ function Dashboard() {
                         {day.coolDown && day.coolDown.exercises && day.coolDown.exercises.length > 0 && (
                           <div className={styles.modalExerciseSection}>
                             <h5 className={`${styles.modalExerciseSectionTitle} ${styles.modalExerciseSectionTitleCooldown}`}>
-                              Cool Down {day.coolDown.totalDuration && `(${day.coolDown.totalDuration} min)`}
+                              Cool Down {day.coolDown.totalDuration && `(${day.coolDown.totalDuration} sec)`}
                             </h5>
                             {day.coolDown.exercises.map((exercise, exIndex) => (
                               <div key={exIndex} className={styles.modalExerciseItem}>
                                 • <strong>{exercise.name}</strong> ({exercise.type})
-                                {formatExercise(exercise) && <div className={styles.modalExerciseNotes}>{formatExercise(exercise)}</div>}
+                                {formatExercise(exercise, selectedPlan) && <div className={styles.modalExerciseNotes}>{formatExercise(exercise, selectedPlan)}</div>}
                                 {exercise.notes && <div className={styles.modalExerciseNotes}>Note: {exercise.notes}</div>}
                               </div>
                             ))}
@@ -464,7 +459,7 @@ function Dashboard() {
                 {selectedDayWorkout.workout.warmUp && selectedDayWorkout.workout.warmUp.exercises && selectedDayWorkout.workout.warmUp.exercises.length > 0 && (
                   <div className={styles.dayWorkoutSection}>
                     <h3 className={`${styles.dayWorkoutSectionTitle} ${styles.dayWorkoutSectionTitleWarmup}`}>
-                      🔥 Warm Up {selectedDayWorkout.workout.warmUp.totalDuration && `(${selectedDayWorkout.workout.warmUp.totalDuration} min)`}
+                      🔥 Warm Up {selectedDayWorkout.workout.warmUp.totalDuration && `(${selectedDayWorkout.workout.warmUp.totalDuration} sec)`}
                     </h3>
                     {selectedDayWorkout.workout.warmUp.exercises.map((exercise, exIndex) => (
                       <div key={exIndex} className={`${styles.dayWorkoutExerciseCard} ${styles.dayWorkoutExerciseCardWarmup}`}>
@@ -474,9 +469,9 @@ function Dashboard() {
                             ({exercise.type})
                           </span>
                         </div>
-                        {formatExercise(exercise) && (
+                        {formatExercise(exercise, selectedDayWorkout.plan) && (
                           <div className={styles.dayWorkoutExerciseDetails}>
-                            {formatExercise(exercise)}
+                            {formatExercise(exercise, selectedDayWorkout.plan)}
                           </div>
                         )}
                         {exercise.notes && (
@@ -503,9 +498,9 @@ function Dashboard() {
                             ({exercise.type})
                           </span>
                         </div>
-                        {formatExercise(exercise) && (
+                        {formatExercise(exercise, selectedDayWorkout.plan) && (
                           <div className={styles.dayWorkoutExerciseDetailsMain}>
-                            📊 {formatExercise(exercise)}
+                            📊 {formatExercise(exercise, selectedDayWorkout.plan)}
                           </div>
                         )}
                         {exercise.notes && (
@@ -522,7 +517,7 @@ function Dashboard() {
                 {selectedDayWorkout.workout.coolDown && selectedDayWorkout.workout.coolDown.exercises && selectedDayWorkout.workout.coolDown.exercises.length > 0 && (
                   <div className={styles.dayWorkoutSection}>
                     <h3 className={`${styles.dayWorkoutSectionTitle} ${styles.dayWorkoutSectionTitleCooldown}`}>
-                      🧘 Cool Down {selectedDayWorkout.workout.coolDown.totalDuration && `(${selectedDayWorkout.workout.coolDown.totalDuration} min)`}
+                      🧘 Cool Down {selectedDayWorkout.workout.coolDown.totalDuration && `(${selectedDayWorkout.workout.coolDown.totalDuration} sec)`}
                     </h3>
                     {selectedDayWorkout.workout.coolDown.exercises.map((exercise, exIndex) => (
                       <div key={exIndex} className={`${styles.dayWorkoutExerciseCard} ${styles.dayWorkoutExerciseCardCooldown}`}>
@@ -532,9 +527,9 @@ function Dashboard() {
                             ({exercise.type})
                           </span>
                         </div>
-                        {formatExercise(exercise) && (
+                        {formatExercise(exercise, selectedDayWorkout.plan) && (
                           <div className={styles.dayWorkoutExerciseDetails}>
-                            {formatExercise(exercise)}
+                            {formatExercise(exercise, selectedDayWorkout.plan)}
                           </div>
                         )}
                         {exercise.notes && (

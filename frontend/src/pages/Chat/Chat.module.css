@@ -43,8 +43,41 @@
   padding: 30px;
   overflow-y: auto;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.message {
+  max-width: 80%;
+  padding: 15px 20px;
+  border-radius: 15px;
+  position: relative;
+}
+
+.userMessage {
+  align-self: flex-end;
+  background: linear-gradient(90deg, #a020f0 18%, #6a0dad 78%);
+  color: white;
+  border-bottom-right-radius: 5px;
+}
+
+.aiMessage {
+  align-self: flex-start;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-bottom-left-radius: 5px;
+}
+
+.messageContent {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 5px;
+}
+
+.messageTimestamp {
+  font-size: 12px;
+  opacity: 0.7;
+  text-align: right;
 }
 
 .placeholder {
@@ -94,6 +127,17 @@
 .sendButton:hover {
   transform: scale(1.05);
   filter: brightness(1.1);
+}
+
+.errorMessage {
+  align-self: center;
+  background-color: rgba(255, 0, 0, 0.1);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  text-align: center;
+  padding: 15px 20px;
+  border-radius: 15px;
+  margin: 10px 0;
 }
 
 @media (max-width: 991px) {

@@ -93,3 +93,32 @@
   transform: none;
   box-shadow: none;
 }
+
+.weightUnitRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 10px;
+}
+
+.weightUnitLabel {
+  font-size: 16px;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.weightUnitSelect {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: rgba(255,255,255,0.1);
+  color: var(--text);
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.weightUnitSelect:focus {
+  border-color: var(--secondary);
+  outline: none;
+}

@@ -58,19 +58,25 @@
   cursor: not-allowed;
 }
 
-.submit {
+.onboardingButton {
   margin-top: 1.3rem;
   color: white;
-}
-
-.submit:hover:not(:disabled) {
-  cursor: pointer;
-  transform: scale(1.03);
-  filter: brightness(1.1);
+  padding: 0.7rem 3rem;
+  border-radius: 0.8rem;
+  border: none;
+  background: var(--secondary);
+  font-weight: 600;
+  font-size: 1rem;
   transition: all 0.2s ease-in-out;
 }
 
-.submit:disabled {
+.onboardingButton:hover:not(:disabled) {
+  cursor: pointer;
+  transform: scale(1.03);
+  filter: brightness(1.1);
+}
+
+.onboardingButton:disabled {
   opacity: 0.6;
   cursor: not-allowed;
   transform: none;
@@ -84,28 +90,4 @@
 
 .link:hover {
   color: var(--tertiary);
-}
-
-button {
-  padding: 0.7rem 3rem;
-  border-radius: 0.8rem;
-  border: none;
-  background: linear-gradient(90deg, #a020f0 18%, #6a0dad 78%);
-  color: #fff;
-  font-weight: 600;
-  font-size: 1rem;
-}
-
-button:hover:not(:disabled) {
-  cursor: pointer;
-  transform: scale(1.03);
-  filter: brightness(1.1);
-  transition: all 0.2s ease-in-out;
-}
-
-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-  filter: none;
 }

@@ -53,4 +53,29 @@ export async function getAllWorkoutPlans() {
     console.error("Error fetching workout plans:", error);
     throw error;
   }
+}
+
+export async function chatWithAI(message, planId) {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    throw new Error("No authentication token found");
+  }
+  try {
+    const response = await fetch(`${API_URL}/chat`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({ message, planId })
+    });
+    const result = await response.json();
+    if (!response.ok) {
+      throw new Error(result.error || "Failed to chat with AI");
+    }
+    return result;
+  } catch (error) {
+    console.error("Error chatting with AI:", error);
+    throw error;
+  }
 } 
