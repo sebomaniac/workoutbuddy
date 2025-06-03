@@ -7,7 +7,6 @@
 .header {
   display: flex;
   width: 100%;
-  max-width: 1103px;
   align-items: stretch;
   gap: 88px;
   font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
@@ -47,10 +46,11 @@
 
 .settingsCard {
   border-radius: 20px;
-  background-color: rgba(30, 30, 30, 0.9);
+  background-color: rgba(217, 217, 217, 0.1);
   padding: 33px 38px;
   color: rgba(255, 255, 255, 1);
   font-weight: 500;
+  border: 1px solid rgba(192, 132, 252, 0.3);
 }
 
 .saveButtonContainer {
