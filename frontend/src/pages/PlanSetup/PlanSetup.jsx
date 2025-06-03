@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 import MultipleSelector from "./components/MultipleSelector/MultipleSelector";
 import DifficultySelector from "./components/DifficultySelector/DifficultySelector";
 import PromptInput from "./components/PromptInput/PromptInput";
-import AdvancedSettings from "./components/AdvancedSettings/AdvancedSettings";
 import { generateWorkoutPlan } from "../../services/workout";
+import { fetchSettings } from "../../services/settings";
 
 const PlanSetup = () => {
   const types = ["cardio", "plyometrics", "strength", "stretching"]
@@ -31,7 +31,6 @@ const PlanSetup = () => {
   const [pullUpsPR, setPullUpsPR] = useState("");
 
   const [prompt, setPrompt] = useState("");
-  const [showAdvanced, setShowAdvanced] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
   const [weightUnit, setWeightUnit] = useState("lbs");
@@ -133,6 +132,8 @@ const PlanSetup = () => {
 
     setIsGenerating(true);
 
+    const settings = await fetchSettings();
+
     try {
       const planData = {
         selectedTypes,
@@ -140,13 +141,13 @@ const PlanSetup = () => {
         selectedDifficulty,
         prompt,
         gender: gender || undefined,
-        age: age ? parseInt(age) : undefined,
-        weight: weight ? parseFloat(weight) : undefined,
-        height: height ? parseFloat(height) : undefined,
-        benchpressPR: benchpressPR ? parseFloat(benchpressPR) : undefined,
-        squatPR: squatPR ? parseFloat(squatPR) : undefined,
-        deadliftPR: deadliftPR ? parseFloat(deadliftPR) : undefined,
-        pullUpsPR: pullUpsPR ? parseInt(pullUpsPR) : undefined,
+        age: settings.age || undefined,
+        weight: settings.weight || undefined,
+        height: settings.height || undefined,
+        benchpressPR: settings.benchpressPR || undefined,
+        squatPR: settings.squatPR || undefined,
+        deadliftPR: settings.deadliftPR || undefined,
+        pullUpsPR: settings.pullUpsPR || undefined,
         weightUnit,
       };
 
@@ -229,27 +230,6 @@ const PlanSetup = () => {
             </div>
           </div>
           <div className={styles.lowerContainer}>
-            <AdvancedSettings
-              showAdvanced={showAdvanced}
-              setShowAdvanced={setShowAdvanced}
-              gender={gender}
-              setGender={setGender}
-              age={age}
-              setAge={setAge}
-              weight={weight}
-              setWeight={setWeight}
-              height={height}
-              setHeight={setHeight}
-              benchpressPR={benchpressPR}
-              setBenchpressPR={setBenchpressPR}
-              squatPR={squatPR}
-              setSquatPR={setSquatPR}
-              deadliftPR={deadliftPR}
-              setDeadliftPR={setDeadliftPR}
-              pullUpsPR={pullUpsPR}
-              setPullUpsPR={setPullUpsPR}
-              genders={genders}
-            />
             <PromptInput
               title="Tell us about your goals"
               prompt={prompt}

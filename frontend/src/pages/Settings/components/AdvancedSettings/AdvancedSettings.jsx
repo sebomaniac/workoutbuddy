@@ -1,7 +1,6 @@
 import styles from './AdvancedSettings.module.css';
 
 const AdvancedSettings = ({
-  showAdvanced, setShowAdvanced,
   gender, setGender,
   age, setAge,
   weight, setWeight,
@@ -12,19 +11,6 @@ const AdvancedSettings = ({
   pullUpsPR, setPullUpsPR,
   genders
 }) => (
-  <div className={styles.container}>
-    <button
-      className={styles.advancedButton}
-      onClick={() => setShowAdvanced(!showAdvanced)}
-    >
-      Advanced Settings (Optional)
-      <span
-        className={`${styles.arrow} ${showAdvanced ? styles.arrowFlipped : ""}`}
-      >
-        ▼
-      </span>
-    </button>
-    {showAdvanced && (
       <div className={styles.settingsContainer}>
         <div className={styles.leftContainer}>
           <label className={styles.label}>
@@ -114,8 +100,6 @@ const AdvancedSettings = ({
           </label>
         </div>
       </div>
-    )}
-  </div>
 );
 
 export default AdvancedSettings;
