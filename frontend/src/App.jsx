@@ -5,6 +5,7 @@ import Chat from "./pages/Chat/Chat";
 import Query from "./pages/Query/Query";
 import Landing from "./pages/Landing/Landing";
 import Setup from "./pages/PlanSetup/PlanSetup";
+import Settings from "./pages/Settings/Settings";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./contexts/AuthContext";
 import "./index.css";
@@ -47,6 +48,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Setup />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute>
+                <Settings />
               </ProtectedRoute>
             }
           />

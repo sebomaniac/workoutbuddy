@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import MultipleSelector from "./components/MultipleSelector/MultipleSelector";
 import DifficultySelector from "./components/DifficultySelector/DifficultySelector";
 import PromptInput from "./components/PromptInput/PromptInput";
-import AdvancedSettings from "./components/AdvancedSettings/AdvancedSettings";
 import { generateWorkoutPlan } from "../../services/workout";
 
 const PlanSetup = () => {
@@ -31,7 +30,6 @@ const PlanSetup = () => {
   const [pullUpsPR, setPullUpsPR] = useState("");
 
   const [prompt, setPrompt] = useState("");
-  const [showAdvanced, setShowAdvanced] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
   const [weightUnit, setWeightUnit] = useState("lbs");
@@ -229,27 +227,6 @@ const PlanSetup = () => {
             </div>
           </div>
           <div className={styles.lowerContainer}>
-            <AdvancedSettings
-              showAdvanced={showAdvanced}
-              setShowAdvanced={setShowAdvanced}
-              gender={gender}
-              setGender={setGender}
-              age={age}
-              setAge={setAge}
-              weight={weight}
-              setWeight={setWeight}
-              height={height}
-              setHeight={setHeight}
-              benchpressPR={benchpressPR}
-              setBenchpressPR={setBenchpressPR}
-              squatPR={squatPR}
-              setSquatPR={setSquatPR}
-              deadliftPR={deadliftPR}
-              setDeadliftPR={setDeadliftPR}
-              pullUpsPR={pullUpsPR}
-              setPullUpsPR={setPullUpsPR}
-              genders={genders}
-            />
             <PromptInput
               title="Tell us about your goals"
               prompt={prompt}

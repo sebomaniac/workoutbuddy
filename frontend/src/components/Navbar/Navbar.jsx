@@ -32,6 +32,14 @@ const Navbar = () => {
       >
         Query
       </Link>
+      <Link
+        to="/settings"
+        className={`underline-animated ${
+          location.pathname === "/settings" ? styles.active : ""
+        }`}
+      >
+        Settings
+      </Link>
       <LogoutButton />
     </nav>
   );
