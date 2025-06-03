@@ -6,6 +6,7 @@ const cors = require("cors");
 const workoutPlanRoutes = require("./controllers/workoutPlan.controller");
 const authRoutes = require("./controllers/auth.controller");
 const exercisesRoutes = require("./controllers/exercises.controller");
+const settingsRoutes = require("./controllers/settings.controller");
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use("/api", authRoutes);
 const requireAuth = require("./middleware/requireAuth");
 app.use("/api", requireAuth, workoutPlanRoutes); // protect if not logged in
 app.use("/api/exercises", requireAuth, exercisesRoutes);
+app.use("/api/settings", requireAuth, settingsRoutes);
 
 app.use((err, req, res, next) => {
   console.error("Global error handler:", {
