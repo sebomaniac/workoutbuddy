@@ -7,6 +7,7 @@ import MultipleSelector from "./components/MultipleSelector/MultipleSelector";
 import DifficultySelector from "./components/DifficultySelector/DifficultySelector";
 import PromptInput from "./components/PromptInput/PromptInput";
 import { generateWorkoutPlan } from "../../services/workout";
+import { fetchSettings } from "../../services/settings";
 
 const PlanSetup = () => {
   const types = ["cardio", "plyometrics", "strength", "stretching"]
@@ -131,6 +132,8 @@ const PlanSetup = () => {
 
     setIsGenerating(true);
 
+    const settings = await fetchSettings();
+
     try {
       const planData = {
         selectedTypes,
@@ -138,13 +141,13 @@ const PlanSetup = () => {
         selectedDifficulty,
         prompt,
         gender: gender || undefined,
-        age: age ? parseInt(age) : undefined,
-        weight: weight ? parseFloat(weight) : undefined,
-        height: height ? parseFloat(height) : undefined,
-        benchpressPR: benchpressPR ? parseFloat(benchpressPR) : undefined,
-        squatPR: squatPR ? parseFloat(squatPR) : undefined,
-        deadliftPR: deadliftPR ? parseFloat(deadliftPR) : undefined,
-        pullUpsPR: pullUpsPR ? parseInt(pullUpsPR) : undefined,
+        age: settings.age || undefined,
+        weight: settings.weight || undefined,
+        height: settings.height || undefined,
+        benchpressPR: settings.benchpressPR || undefined,
+        squatPR: settings.squatPR || undefined,
+        deadliftPR: settings.deadliftPR || undefined,
+        pullUpsPR: settings.pullUpsPR || undefined,
         weightUnit,
       };
 
