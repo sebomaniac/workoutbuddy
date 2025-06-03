@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from "../../contexts/AuthContext";
 import AdvancedSettings from "./components/AdvancedSettings/AdvancedSettings";
 import Navbar from "../../components/Navbar/Navbar";
+import { fetchSettings, saveSettings } from "../../services/settings";
 import styles from './Settings.module.css';
 
 const Settings = () => {
@@ -32,10 +33,7 @@ const Settings = () => {
         pullUpsPR: pullUpsPR ? parseInt(pullUpsPR) : null,
       };
       
-      // TODO: Add API call to save settings to backend
-      console.log('Saving settings:', settingsData);
-      
-      // Show success message
+      await saveSettings(settingsData);
       alert('Settings saved successfully!');
     } catch (error) {
       console.error('Error saving settings:', error);
@@ -43,20 +41,29 @@ const Settings = () => {
     }
   };
   
-  // Load settings on component mount
   useEffect(() => {
-    // TODO: Add API call to load existing settings from backend
     const loadSettings = async () => {
       try {
-        // Placeholder for loading settings
-        console.log('Loading user settings...');
+        const result = await fetchSettings();
+        const settings = result.settings || {};
+        
+        setGender(settings.gender || '');
+        setAge(settings.age ? settings.age.toString() : '');
+        setWeight(settings.weight ? settings.weight.toString() : '');
+        setHeight(settings.height ? settings.height.toString() : '');
+        setBenchpressPR(settings.benchpressPR ? settings.benchpressPR.toString() : '');
+        setSquatPR(settings.squatPR ? settings.squatPR.toString() : '');
+        setDeadliftPR(settings.deadliftPR ? settings.deadliftPR.toString() : '');
+        setPullUpsPR(settings.pullUpsPR ? settings.pullUpsPR.toString() : '');
       } catch (error) {
         console.error('Error loading settings:', error);
       }
     };
     
-    loadSettings();
-  }, []);
+    if (user) {
+      loadSettings();
+    }
+  }, [user]);
 
   if (loading) {
     return null;
