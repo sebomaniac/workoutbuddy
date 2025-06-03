@@ -7,7 +7,6 @@
 .header {
   display: flex;
   width: 100%;
-  max-width: 1103px;
   align-items: stretch;
   gap: 88px;
   font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
@@ -67,7 +66,7 @@
   padding: 15px;
   border-radius: 10px;
   border: 1px solid rgba(192, 132, 252, 0.5);
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(217, 217, 217, 0.1);
   color: rgba(255, 255, 255, 1);
   font-size: 16px;
   outline: none;
