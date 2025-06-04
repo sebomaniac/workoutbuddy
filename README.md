@@ -77,7 +77,7 @@ MONGODB_URI=your_mongodb_uri_here
 
 5. Run the backend
 ```bash
-node src/server.js
+npm run dev
 ```
 
 6. In a new terminal window, change directory to the frontend folder
