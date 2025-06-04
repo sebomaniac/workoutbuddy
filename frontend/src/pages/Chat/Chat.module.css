@@ -18,6 +18,7 @@
 
 .header {
   display: flex;
+  flex-direction: column;
   width: 100%;
   align-items: stretch;
   gap: 88px;
@@ -51,7 +52,7 @@
 }
 
 .nameHighlight::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 4px;
   left: 0;
@@ -249,12 +250,22 @@
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
 }
 
 @media (max-width: 991px) {
+  .header {
+    max-width: 100%;
+  }
   .chat {
     padding: 57px 20px;
   }
@@ -275,4 +286,4 @@
   .sendButton {
     align-self: flex-end;
   }
-} 
+}
