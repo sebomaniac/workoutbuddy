@@ -2,6 +2,18 @@
   background-color: rgba(13, 13, 13, 0.867);
   padding: 57px 56px;
   overflow: hidden;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .header {
@@ -18,10 +30,42 @@
 .welcomeText {
   font-size: 60px;
   flex: 1;
+  animation: slideInLeft 0.8s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .nameHighlight {
   color: rgba(192, 132, 252, 1);
+  position: relative;
+  display: inline-block;
+}
+
+.nameHighlight::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: rgba(192, 132, 252, 1);
+  animation: underlineGrow 1s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes underlineGrow {
+  to {
+    width: 100%;
+  }
 }
 
 .navigation {
@@ -32,6 +76,38 @@
   font-size: 25px;
   white-space: nowrap;
   flex: 0 1 auto;
+  animation: slideInRight 0.8s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.navigation a {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.navigation a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.8);
+  transition: width 0.3s ease;
+}
+
+.navigation a:hover::after {
+  width: 100%;
 }
 
 .mainContent {
@@ -65,6 +141,18 @@
 .sectionTitle {
   font-size: 40px;
   align-self: start;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .mainColumnContent .sectionTitle {
@@ -86,6 +174,18 @@
   padding: 33px 38px;
   color: rgba(0, 0, 0, 1);
   font-weight: 500;
+  animation: cardAppear 0.6s ease-out;
+}
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .workoutTitle {
@@ -106,6 +206,18 @@
   font-size: 45px;
   color: rgba(0, 0, 0, 1);
   font-weight: 500;
+  animation: planContainerAppear 0.8s ease-out;
+}
+
+@keyframes planContainerAppear {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .statsColumn {
@@ -134,6 +246,18 @@
   margin-top: 26px;
   padding: 30px;
   text-align: center;
+  animation: statCardAppear 0.6s ease-out;
+}
+
+@keyframes statCardAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .weeklyStreak {
@@ -451,6 +575,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.modalCloseButton:hover {
+  background: rgba(168, 85, 247, 0.15);
+  color: #a855f7;
+  border: 2px solid #a855f7;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
 }
 
 /* Modal description */

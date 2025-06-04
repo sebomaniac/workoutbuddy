@@ -2,6 +2,18 @@
   background-color: rgba(13, 13, 13, 0.867);
   padding: 57px 56px;
   overflow: hidden;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .header {
@@ -13,6 +25,18 @@
   color: rgba(255, 255, 255, 1);
   font-weight: 300;
   flex-wrap: wrap;
+  animation: slideInLeft 0.8s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .welcomeText {
@@ -22,6 +46,26 @@
 
 .nameHighlight {
   color: rgba(192, 132, 252, 1);
+  position: relative;
+  display: inline-block;
+}
+
+.nameHighlight::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: rgba(192, 132, 252, 1);
+  animation: underlineGrow 1s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes underlineGrow {
+  to {
+    width: 100%;
+  }
 }
 
 .mainContent {
@@ -35,6 +79,18 @@
   font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
   color: rgba(242, 242, 242, 1);
   font-weight: 300;
+  animation: containerAppear 0.8s ease-out;
+}
+
+@keyframes containerAppear {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .sectionTitle {
@@ -42,6 +98,18 @@
   font-weight: 500;
   align-self: start;
   margin-bottom: 26px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .settingsCard {
@@ -51,6 +119,23 @@
   color: rgba(255, 255, 255, 1);
   font-weight: 500;
   border: 1px solid rgba(192, 132, 252, 0.3);
+  animation: cardAppear 0.8s ease-out;
+  transition: box-shadow 0.3s ease;
+}
+
+.settingsCard:hover {
+  box-shadow: 0 4px 20px rgba(192, 132, 252, 0.2);
+}
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .saveButtonContainer {
@@ -58,6 +143,7 @@
   text-align: center;
   padding-top: 20px;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-out;
 }
 
 .saveButton {
@@ -69,18 +155,20 @@
   font-weight: 600;
   font-size: 18px;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease;
   font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
 }
 
 .saveButton:hover {
   transform: scale(1.02);
   filter: brightness(1.1);
+  box-shadow: 0 4px 12px rgba(192, 132, 252, 0.3);
 }
 
 .saveButton:focus {
   outline: 2px solid rgba(192, 132, 252, 1);
   outline-offset: 2px;
+  transform: translateY(-2px);
 }
 
 .saveButton:active {
@@ -93,6 +181,7 @@
   cursor: not-allowed;
   transform: none;
   filter: none;
+  box-shadow: none;
 }
 
 @media (max-width: 991px) {

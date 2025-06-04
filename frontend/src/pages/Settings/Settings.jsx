@@ -75,7 +75,7 @@ const Settings = () => {
     <div className={styles.settings}>
       <div className={styles.header}>
         <div className={styles.welcomeText}>
-          Settings,{" "}
+          Advanced settings,{" "}
           <span className={styles.nameHighlight}>{userName}</span>
         </div>
         <Navbar />
