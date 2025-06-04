@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import ParticlesBackground from "../../components/ParticlesBackground";
 import styles from "./PlanSetup.module.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
