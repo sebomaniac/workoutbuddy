@@ -18,9 +18,10 @@
 
 .header {
   display: flex;
+  flex-direction: column;
   width: 100%;
   align-items: stretch;
-  gap: 88px;
+  gap: 40px;
   font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
   color: rgba(255, 255, 255, 1);
   font-weight: 300;
@@ -51,7 +52,7 @@
 }
 
 .nameHighlight::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 4px;
   left: 0;
@@ -96,7 +97,7 @@
 }
 
 .navigation a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: 0;
