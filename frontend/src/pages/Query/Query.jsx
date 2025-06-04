@@ -45,11 +45,13 @@ function Query() {
 
   const [exercises, setExercises] = useState([]);
   const [error, setError] = useState(null);
+  const [hasSearched, setHasSearched] = useState(false);
 
   const handleQueryButtonClick = async () => {
     if (selectedType || selectedMuscle || selectedDifficulty) {
       try {
         setError(null);
+        setHasSearched(true);
         const result = await getExercises({
           type: selectedType,
           muscle: selectedMuscle,
@@ -134,10 +136,14 @@ function Query() {
           </div>
           <div className={styles.resultsArea}>
             {error && <div className={styles.error}>{error}</div>}
-            {exercises.length === 0 && !error && (
+            {!hasSearched && (
               <div className={styles.placeholder}>
-                Build your query above to see personalized workout
-                recommendations
+                Build your query above to see personalized workout recommendations
+              </div>
+            )}
+            {hasSearched && exercises.length === 0 && !error && (
+              <div className={styles.placeholder}>
+                No exercises found. Please change your query parameters.
               </div>
             )}
             {exercises.length > 0 && (
