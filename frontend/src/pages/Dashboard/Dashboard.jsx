@@ -45,15 +45,17 @@ function Dashboard() {
   // Get workout for selected day
   const getSelectedDayWorkout = () => {
     if (workoutPlans.length === 0) return null;
-    
+
     // Find the most recent workout plan
     const latestPlan = workoutPlans[0]; // Assuming plans are sorted by creation date
-    
+
     if (latestPlan && latestPlan.days) {
-      const selectedDayWorkout = latestPlan.days.find(day => day.dayIndex === selectedDay);
+      const selectedDayWorkout = latestPlan.days.find(
+        (day) => day.dayIndex === selectedDay
+      );
       return { plan: latestPlan, workout: selectedDayWorkout };
     }
-    
+
     return null;
   };
 
@@ -83,28 +85,36 @@ function Dashboard() {
       parts.push(`${exercise.sets} sets × ${exercise.reps} reps`);
     }
     if (exercise.weight) {
-      const unit = plan?.weightUnit || exercise.weightUnit || 'lbs';
+      const unit = plan?.weightUnit || exercise.weightUnit || "lbs";
       parts.push(`${exercise.weight} ${unit}`);
     }
     if (exercise.duration) {
       parts.push(`${exercise.duration} seconds`);
     }
     if (exercise.distance) {
-      parts.push(`${exercise.distance} ${exercise.distanceUnit || 'km'}`);
+      parts.push(`${exercise.distance} ${exercise.distanceUnit || "km"}`);
     }
     if (exercise.restBetweenSets) {
       parts.push(`Rest: ${exercise.restBetweenSets}s`);
     }
-    return parts.join(' • ');
+    return parts.join(" • ");
   };
 
   const getDayName = (dayIndex) => {
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    return days[dayIndex] || 'Unknown Day';
+    const days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    return days[dayIndex] || "Unknown Day";
   };
 
   const handleCreateNewPlan = () => {
-    navigate('/setup');
+    navigate("/setup");
   };
 
   const handleDayChange = (dayIndex) => {
@@ -117,8 +127,7 @@ function Dashboard() {
     <div className={styles.dashboard}>
       <div className={styles.header}>
         <div className={styles.welcomeText}>
-          Welcome back,{" "}
-          <span className={styles.nameHighlight}>{userName}</span>
+          Welcome back, <span className={styles.nameHighlight}>{userName}</span>
         </div>
         <Navbar />
       </div>
@@ -129,7 +138,9 @@ function Dashboard() {
             <div className={styles.mainColumnContent}>
               <div className={styles.daySelectionContainer}>
                 <div className={styles.sectionTitle}>
-                  {isToday ? "Today's Workout" : `${getDayName(selectedDay)}'s Workout`}
+                  {isToday
+                    ? "Today's Workout"
+                    : `${getDayName(selectedDay)}'s Workout`}
                 </div>
                 <div className={styles.daySelectionControls}>
                   <span className={styles.daySelectionLabel}>View day:</span>
@@ -138,13 +149,27 @@ function Dashboard() {
                     onChange={(e) => handleDayChange(parseInt(e.target.value))}
                     className={styles.daySelect}
                   >
-                    <option value={0} className={styles.daySelectOption}>Sunday</option>
-                    <option value={1} className={styles.daySelectOption}>Monday</option>
-                    <option value={2} className={styles.daySelectOption}>Tuesday</option>
-                    <option value={3} className={styles.daySelectOption}>Wednesday</option>
-                    <option value={4} className={styles.daySelectOption}>Thursday</option>
-                    <option value={5} className={styles.daySelectOption}>Friday</option>
-                    <option value={6} className={styles.daySelectOption}>Saturday</option>
+                    <option value={0} className={styles.daySelectOption}>
+                      Sunday
+                    </option>
+                    <option value={1} className={styles.daySelectOption}>
+                      Monday
+                    </option>
+                    <option value={2} className={styles.daySelectOption}>
+                      Tuesday
+                    </option>
+                    <option value={3} className={styles.daySelectOption}>
+                      Wednesday
+                    </option>
+                    <option value={4} className={styles.daySelectOption}>
+                      Thursday
+                    </option>
+                    <option value={5} className={styles.daySelectOption}>
+                      Friday
+                    </option>
+                    <option value={6} className={styles.daySelectOption}>
+                      Saturday
+                    </option>
                   </select>
                   {!isToday && (
                     <button
@@ -158,23 +183,33 @@ function Dashboard() {
               </div>
               <div className={styles.workoutCard}>
                 {plansLoading ? (
-                  <div className={styles.workoutTitle}>Loading your workout plans...</div>
+                  <div className={styles.workoutTitle}>
+                    Loading your workout plans...
+                  </div>
                 ) : plansError ? (
                   <div>
-                    <div className={styles.workoutTitle}>Error loading workout plans</div>
-                    <div className={styles.workoutDescription}>{plansError}</div>
+                    <div className={styles.workoutTitle}>
+                      Error loading workout plans
+                    </div>
+                    <div className={styles.workoutDescription}>
+                      {plansError}
+                    </div>
                   </div>
                 ) : workoutPlans.length === 0 ? (
                   <div>
-                    <div className={styles.workoutTitle}>No Workout Plans Yet</div>
+                    <div className={styles.workoutTitle}>
+                      No Workout Plans Yet
+                    </div>
                     <div className={styles.workoutDescription}>
-                      Create your first workout plan to get started with your fitness journey!
+                      Create your first workout plan to get started with your
+                      fitness journey!
                     </div>
                   </div>
                 ) : selectedDayWorkout && selectedDayWorkout.workout ? (
                   <div>
                     <div className={styles.workoutTitle}>
-                      {selectedDayWorkout.workout.dayName} - {selectedDayWorkout.plan.name}
+                      {selectedDayWorkout.workout.dayName} -{" "}
+                      {selectedDayWorkout.plan.name}
                     </div>
                     {selectedDayWorkout.workout.isRestDay ? (
                       <div className={styles.workoutDescription}>
@@ -182,10 +217,14 @@ function Dashboard() {
                       </div>
                     ) : (
                       <div className={styles.workoutDescription}>
-                        {selectedDayWorkout.workout.exercises.length} exercises planned
+                        {selectedDayWorkout.workout.exercises.length} exercises
+                        planned
                         {selectedDayWorkout.workout.exercises.length > 0 && (
                           <div className={styles.workoutDescriptionWithButton}>
-                            <span>Starting with: {selectedDayWorkout.workout.exercises[0].name}</span>
+                            <span>
+                              Starting with:{" "}
+                              {selectedDayWorkout.workout.exercises[0].name}
+                            </span>
                             <button
                               onClick={openDayWorkoutModal}
                               className={styles.viewWorkoutButton}
@@ -199,9 +238,12 @@ function Dashboard() {
                   </div>
                 ) : (
                   <div>
-                    <div className={styles.workoutTitle}>No Workout Scheduled for {getDayName(selectedDay)}</div>
+                    <div className={styles.workoutTitle}>
+                      No Workout Scheduled for {getDayName(selectedDay)}
+                    </div>
                     <div className={styles.workoutDescription}>
-                      Check your workout plans or create a new one to stay on track!
+                      Check your workout plans or create a new one to stay on
+                      track!
                     </div>
                   </div>
                 )}
@@ -217,19 +259,20 @@ function Dashboard() {
                       No workout plan created yet
                     </div>
                     <div className={styles.emptyPlansDescription}>
-                      Create your first workout plan to get started with your fitness journey!
+                      Create your first workout plan to get started with your
+                      fitness journey!
                     </div>
                   </div>
                 ) : (
                   workoutPlans.slice(0, 1).map((plan) => (
-                    <div 
-                      key={plan._id} 
+                    <div
+                      key={plan._id}
                       onClick={() => handlePlanClick(plan)}
                       className={styles.planCard}
                     >
-                    <strong>{plan.name}</strong>
+                      <strong>{plan.name}</strong>
                       <div className={styles.planCardDescription}>
-                        {plan.description || 'No description'}
+                        {plan.description || "No description"}
                       </div>
                       <div className={styles.planCardDate}>
                         Created: {new Date(plan.createdAt).toLocaleDateString()}
@@ -245,20 +288,24 @@ function Dashboard() {
                     </div>
                   ))
                 )}
-                
+
                 <div className={styles.createPlanButtonContainer}>
                   <button
                     onClick={handleCreateNewPlan}
                     className={styles.createPlanButton}
                   >
-                    <span className={styles.createPlanButtonIcon}>+</span>
-                    {workoutPlans.length === 0 ? 'Create Your First Workout Plan' : 'Generate New Workout Plan'}
+                    <span className={styles.createPlanButtonIcon}>
+                      + &nbsp;
+                    </span>
+                    {workoutPlans.length === 0
+                      ? "Create Your First Workout Plan"
+                      : "Generate New Workout Plan"}
                   </button>
                 </div>
               </div>
             </div>
           </div>
-{/*
+          {/*
 
           <div className={styles.statsColumn}>
             <div className={styles.statsContent}>
@@ -284,7 +331,7 @@ function Dashboard() {
           <div className={styles.modalContent}>
             <div className={styles.modalHeader}>
               <h2 className={styles.modalTitle}>{selectedPlan.name}</h2>
-              <button 
+              <button
                 onClick={closePlanModal}
                 className={styles.modalCloseButton}
               >
@@ -300,32 +347,33 @@ function Dashboard() {
 
             <div className={styles.modalInfoGrid}>
               <div className={styles.modalInfoCard}>
-                <strong>Created:</strong><br />
+                <strong>Created:</strong>
+                <br />
                 {new Date(selectedPlan.createdAt).toLocaleDateString()}
               </div>
               {selectedPlan.startDate && (
                 <div className={styles.modalInfoCard}>
-                  <strong>Start Date:</strong><br />
+                  <strong>Start Date:</strong>
+                  <br />
                   {new Date(selectedPlan.startDate).toLocaleDateString()}
                 </div>
               )}
               <div className={styles.modalInfoCard}>
-                <strong>Total Days:</strong><br />
+                <strong>Total Days:</strong>
+                <br />
                 {selectedPlan.days ? selectedPlan.days.length : 0}
               </div>
             </div>
 
-            <h3 className={styles.modalSectionHeader}>
-              Weekly Schedule
-            </h3>
+            <h3 className={styles.modalSectionHeader}>Weekly Schedule</h3>
 
             {selectedPlan.days && selectedPlan.days.length > 0 ? (
               <div className={styles.modalDaysGrid}>
                 {selectedPlan.days.map((day, index) => (
                   <div key={index} className={styles.modalDayCard}>
                     <h4 className={styles.modalDayTitle}>
-                      {day.dayName || getDayName(day.dayIndex)} 
-                      {day.isRestDay && ' (Rest Day)'}
+                      {day.dayName || getDayName(day.dayIndex)}
+                      {day.isRestDay && " (Rest Day)"}
                     </h4>
 
                     {day.isRestDay ? (
@@ -335,42 +383,69 @@ function Dashboard() {
                     ) : (
                       <>
                         {/* Warm Up Section */}
-                        {day.warmUp && day.warmUp.exercises && day.warmUp.exercises.length > 0 && (
-                          <div className={styles.modalExerciseSection}>
-                            <h5 className={`${styles.modalExerciseSectionTitle} ${styles.modalExerciseSectionTitleWarmup}`}>
-                              Warm Up {day.warmUp.totalDuration && `(${day.warmUp.totalDuration} sec)`}
-                            </h5>
-                            {day.warmUp.exercises.map((exercise, exIndex) => (
-                              <div key={exIndex} className={styles.modalExerciseItem}>
-                                • <strong>{exercise.name}</strong> ({exercise.type})
-                                {formatExercise(exercise, selectedPlan) && <div className={styles.modalExerciseNotes}>{formatExercise(exercise, selectedPlan)}</div>}
-                                {exercise.notes && <div className={styles.modalExerciseNotes}>Note: {exercise.notes}</div>}
-                              </div>
-                            ))}
-                          </div>
-                        )}
+                        {day.warmUp &&
+                          day.warmUp.exercises &&
+                          day.warmUp.exercises.length > 0 && (
+                            <div className={styles.modalExerciseSection}>
+                              <h5
+                                className={`${styles.modalExerciseSectionTitle} ${styles.modalExerciseSectionTitleWarmup}`}
+                              >
+                                Warm Up{" "}
+                                {day.warmUp.totalDuration &&
+                                  `(${day.warmUp.totalDuration} sec)`}
+                              </h5>
+                              {day.warmUp.exercises.map((exercise, exIndex) => (
+                                <div
+                                  key={exIndex}
+                                  className={styles.modalExerciseItem}
+                                >
+                                  • <strong>{exercise.name}</strong> (
+                                  {exercise.type})
+                                  {formatExercise(exercise, selectedPlan) && (
+                                    <div className={styles.modalExerciseNotes}>
+                                      {formatExercise(exercise, selectedPlan)}
+                                    </div>
+                                  )}
+                                  {exercise.notes && (
+                                    <div className={styles.modalExerciseNotes}>
+                                      Note: {exercise.notes}
+                                    </div>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          )}
 
                         {/* Main Exercises */}
                         {day.exercises && day.exercises.length > 0 && (
                           <div className={styles.modalExerciseSection}>
-                            <h5 className={`${styles.modalExerciseSectionTitle} ${styles.modalExerciseSectionTitleMain}`}>
+                            <h5
+                              className={`${styles.modalExerciseSectionTitle} ${styles.modalExerciseSectionTitleMain}`}
+                            >
                               Main Exercises ({day.exercises.length})
                             </h5>
                             {day.exercises.map((exercise, exIndex) => (
-                              <div key={exIndex} className={styles.modalExerciseItemMain}>
+                              <div
+                                key={exIndex}
+                                className={styles.modalExerciseItemMain}
+                              >
                                 <div className={styles.modalExerciseName}>
-                                  {exIndex + 1}. {exercise.name} 
+                                  {exIndex + 1}. {exercise.name}
                                   <span className={styles.modalExerciseType}>
                                     ({exercise.type})
                                   </span>
                                 </div>
                                 {formatExercise(exercise, selectedPlan) && (
-                                  <div className={styles.modalExerciseDetailsMain}>
+                                  <div
+                                    className={styles.modalExerciseDetailsMain}
+                                  >
                                     {formatExercise(exercise, selectedPlan)}
                                   </div>
                                 )}
                                 {exercise.notes && (
-                                  <div className={styles.modalExerciseNotesMain}>
+                                  <div
+                                    className={styles.modalExerciseNotesMain}
+                                  >
                                     Note: {exercise.notes}
                                   </div>
                                 )}
@@ -380,20 +455,44 @@ function Dashboard() {
                         )}
 
                         {/* Cool Down Section */}
-                        {day.coolDown && day.coolDown.exercises && day.coolDown.exercises.length > 0 && (
-                          <div className={styles.modalExerciseSection}>
-                            <h5 className={`${styles.modalExerciseSectionTitle} ${styles.modalExerciseSectionTitleCooldown}`}>
-                              Cool Down {day.coolDown.totalDuration && `(${day.coolDown.totalDuration} sec)`}
-                            </h5>
-                            {day.coolDown.exercises.map((exercise, exIndex) => (
-                              <div key={exIndex} className={styles.modalExerciseItem}>
-                                • <strong>{exercise.name}</strong> ({exercise.type})
-                                {formatExercise(exercise, selectedPlan) && <div className={styles.modalExerciseNotes}>{formatExercise(exercise, selectedPlan)}</div>}
-                                {exercise.notes && <div className={styles.modalExerciseNotes}>Note: {exercise.notes}</div>}
-                              </div>
-                            ))}
-                          </div>
-                        )}
+                        {day.coolDown &&
+                          day.coolDown.exercises &&
+                          day.coolDown.exercises.length > 0 && (
+                            <div className={styles.modalExerciseSection}>
+                              <h5
+                                className={`${styles.modalExerciseSectionTitle} ${styles.modalExerciseSectionTitleCooldown}`}
+                              >
+                                Cool Down{" "}
+                                {day.coolDown.totalDuration &&
+                                  `(${day.coolDown.totalDuration} sec)`}
+                              </h5>
+                              {day.coolDown.exercises.map(
+                                (exercise, exIndex) => (
+                                  <div
+                                    key={exIndex}
+                                    className={styles.modalExerciseItem}
+                                  >
+                                    • <strong>{exercise.name}</strong> (
+                                    {exercise.type})
+                                    {formatExercise(exercise, selectedPlan) && (
+                                      <div
+                                        className={styles.modalExerciseNotes}
+                                      >
+                                        {formatExercise(exercise, selectedPlan)}
+                                      </div>
+                                    )}
+                                    {exercise.notes && (
+                                      <div
+                                        className={styles.modalExerciseNotes}
+                                      >
+                                        Note: {exercise.notes}
+                                      </div>
+                                    )}
+                                  </div>
+                                )
+                              )}
+                            </div>
+                          )}
 
                         {/* Day Notes */}
                         {day.notes && (
@@ -403,13 +502,17 @@ function Dashboard() {
                         )}
 
                         {/* Show message if no exercises */}
-                        {(!day.exercises || day.exercises.length === 0) && 
-                         (!day.warmUp || !day.warmUp.exercises || day.warmUp.exercises.length === 0) &&
-                         (!day.coolDown || !day.coolDown.exercises || day.coolDown.exercises.length === 0) && (
-                          <div className={styles.modalEmptyDay}>
-                            No exercises scheduled for this day
-                          </div>
-                        )}
+                        {(!day.exercises || day.exercises.length === 0) &&
+                          (!day.warmUp ||
+                            !day.warmUp.exercises ||
+                            day.warmUp.exercises.length === 0) &&
+                          (!day.coolDown ||
+                            !day.coolDown.exercises ||
+                            day.coolDown.exercises.length === 0) && (
+                            <div className={styles.modalEmptyDay}>
+                              No exercises scheduled for this day
+                            </div>
+                          )}
                       </>
                     )}
                   </div>
@@ -425,146 +528,224 @@ function Dashboard() {
       )}
 
       {/* Day Workout Detail Modal */}
-      {showDayWorkoutModal && selectedDayWorkout && selectedDayWorkout.workout && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.dayWorkoutModalContent}>
-            <div className={styles.modalHeader}>
-              <h2 className={styles.modalTitle}>
-                {selectedDayWorkout.workout.dayName || getDayName(selectedDay)} Workout
-              </h2>
-              <button 
-                onClick={closeDayWorkoutModal}
-                className={styles.modalCloseButton}
-              >
-                ×
-              </button>
-            </div>
-
-            <div className={styles.dayWorkoutPlanInfo}>
-              <strong>From Plan:</strong> {selectedDayWorkout.plan.name}
-            </div>
-
-            {selectedDayWorkout.workout.isRestDay ? (
-              <div className={styles.dayWorkoutRestDay}>
-                <div className={styles.dayWorkoutRestDayTitle}>
-                  🛌 Rest Day
-                </div>
-                <div className={styles.dayWorkoutRestDayMessage}>
-                  Take a break and let your muscles recover!
-                </div>
+      {showDayWorkoutModal &&
+        selectedDayWorkout &&
+        selectedDayWorkout.workout && (
+          <div className={styles.modalOverlay}>
+            <div className={styles.dayWorkoutModalContent}>
+              <div className={styles.modalHeader}>
+                <h2 className={styles.modalTitle}>
+                  {selectedDayWorkout.workout.dayName ||
+                    getDayName(selectedDay)}{" "}
+                  Workout
+                </h2>
+                <button
+                  onClick={closeDayWorkoutModal}
+                  className={styles.modalCloseButton}
+                >
+                  ×
+                </button>
               </div>
-            ) : (
-              <div>
-                {/* Warm Up Section */}
-                {selectedDayWorkout.workout.warmUp && selectedDayWorkout.workout.warmUp.exercises && selectedDayWorkout.workout.warmUp.exercises.length > 0 && (
-                  <div className={styles.dayWorkoutSection}>
-                    <h3 className={`${styles.dayWorkoutSectionTitle} ${styles.dayWorkoutSectionTitleWarmup}`}>
-                      🔥 Warm Up {selectedDayWorkout.workout.warmUp.totalDuration && `(${selectedDayWorkout.workout.warmUp.totalDuration} sec)`}
-                    </h3>
-                    {selectedDayWorkout.workout.warmUp.exercises.map((exercise, exIndex) => (
-                      <div key={exIndex} className={`${styles.dayWorkoutExerciseCard} ${styles.dayWorkoutExerciseCardWarmup}`}>
-                        <div className={styles.dayWorkoutExerciseName}>
-                          {exercise.name}
-                          <span className={styles.dayWorkoutExerciseType}>
-                            ({exercise.type})
-                          </span>
-                        </div>
-                        {formatExercise(exercise, selectedDayWorkout.plan) && (
-                          <div className={styles.dayWorkoutExerciseDetails}>
-                            {formatExercise(exercise, selectedDayWorkout.plan)}
-                          </div>
-                        )}
-                        {exercise.notes && (
-                          <div className={styles.dayWorkoutExerciseNotes}>
-                            💡 {exercise.notes}
-                          </div>
+
+              <div className={styles.dayWorkoutPlanInfo}>
+                <strong>From Plan:</strong> {selectedDayWorkout.plan.name}
+              </div>
+
+              {selectedDayWorkout.workout.isRestDay ? (
+                <div className={styles.dayWorkoutRestDay}>
+                  <div className={styles.dayWorkoutRestDayTitle}>
+                    🛌 Rest Day
+                  </div>
+                  <div className={styles.dayWorkoutRestDayMessage}>
+                    Take a break and let your muscles recover!
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  {/* Warm Up Section */}
+                  {selectedDayWorkout.workout.warmUp &&
+                    selectedDayWorkout.workout.warmUp.exercises &&
+                    selectedDayWorkout.workout.warmUp.exercises.length > 0 && (
+                      <div className={styles.dayWorkoutSection}>
+                        <h3
+                          className={`${styles.dayWorkoutSectionTitle} ${styles.dayWorkoutSectionTitleWarmup}`}
+                        >
+                          🔥 Warm Up{" "}
+                          {selectedDayWorkout.workout.warmUp.totalDuration &&
+                            `(${selectedDayWorkout.workout.warmUp.totalDuration} sec)`}
+                        </h3>
+                        {selectedDayWorkout.workout.warmUp.exercises.map(
+                          (exercise, exIndex) => (
+                            <div
+                              key={exIndex}
+                              className={`${styles.dayWorkoutExerciseCard} ${styles.dayWorkoutExerciseCardWarmup}`}
+                            >
+                              <div className={styles.dayWorkoutExerciseName}>
+                                {exercise.name}
+                                <span className={styles.dayWorkoutExerciseType}>
+                                  ({exercise.type})
+                                </span>
+                              </div>
+                              {formatExercise(
+                                exercise,
+                                selectedDayWorkout.plan
+                              ) && (
+                                <div
+                                  className={styles.dayWorkoutExerciseDetails}
+                                >
+                                  {formatExercise(
+                                    exercise,
+                                    selectedDayWorkout.plan
+                                  )}
+                                </div>
+                              )}
+                              {exercise.notes && (
+                                <div className={styles.dayWorkoutExerciseNotes}>
+                                  💡 {exercise.notes}
+                                </div>
+                              )}
+                            </div>
+                          )
                         )}
                       </div>
-                    ))}
-                  </div>
-                )}
+                    )}
 
-                {/* Main Exercises */}
-                {selectedDayWorkout.workout.exercises && selectedDayWorkout.workout.exercises.length > 0 && (
-                  <div className={styles.dayWorkoutSection}>
-                    <h3 className={`${styles.dayWorkoutSectionTitle} ${styles.dayWorkoutSectionTitleMain}`}>
-                      💪 Main Exercises ({selectedDayWorkout.workout.exercises.length})
-                    </h3>
-                    {selectedDayWorkout.workout.exercises.map((exercise, exIndex) => (
-                      <div key={exIndex} className={styles.dayWorkoutExerciseCardMain}>
-                        <div className={styles.dayWorkoutExerciseNameMain}>
-                          {exIndex + 1}. {exercise.name}
-                          <span className={styles.dayWorkoutExerciseTypeMain}>
-                            ({exercise.type})
-                          </span>
-                        </div>
-                        {formatExercise(exercise, selectedDayWorkout.plan) && (
-                          <div className={styles.dayWorkoutExerciseDetailsMain}>
-                            📊 {formatExercise(exercise, selectedDayWorkout.plan)}
-                          </div>
-                        )}
-                        {exercise.notes && (
-                          <div className={styles.dayWorkoutExerciseNotesMain}>
-                            💡 <strong>Note:</strong> {exercise.notes}
-                          </div>
+                  {/* Main Exercises */}
+                  {selectedDayWorkout.workout.exercises &&
+                    selectedDayWorkout.workout.exercises.length > 0 && (
+                      <div className={styles.dayWorkoutSection}>
+                        <h3
+                          className={`${styles.dayWorkoutSectionTitle} ${styles.dayWorkoutSectionTitleMain}`}
+                        >
+                          💪 Main Exercises (
+                          {selectedDayWorkout.workout.exercises.length})
+                        </h3>
+                        {selectedDayWorkout.workout.exercises.map(
+                          (exercise, exIndex) => (
+                            <div
+                              key={exIndex}
+                              className={styles.dayWorkoutExerciseCardMain}
+                            >
+                              <div
+                                className={styles.dayWorkoutExerciseNameMain}
+                              >
+                                {exIndex + 1}. {exercise.name}
+                                <span
+                                  className={styles.dayWorkoutExerciseTypeMain}
+                                >
+                                  ({exercise.type})
+                                </span>
+                              </div>
+                              {formatExercise(
+                                exercise,
+                                selectedDayWorkout.plan
+                              ) && (
+                                <div
+                                  className={
+                                    styles.dayWorkoutExerciseDetailsMain
+                                  }
+                                >
+                                  📊{" "}
+                                  {formatExercise(
+                                    exercise,
+                                    selectedDayWorkout.plan
+                                  )}
+                                </div>
+                              )}
+                              {exercise.notes && (
+                                <div
+                                  className={styles.dayWorkoutExerciseNotesMain}
+                                >
+                                  💡 <strong>Note:</strong> {exercise.notes}
+                                </div>
+                              )}
+                            </div>
+                          )
                         )}
                       </div>
-                    ))}
-                  </div>
-                )}
+                    )}
 
-                {/* Cool Down Section */}
-                {selectedDayWorkout.workout.coolDown && selectedDayWorkout.workout.coolDown.exercises && selectedDayWorkout.workout.coolDown.exercises.length > 0 && (
-                  <div className={styles.dayWorkoutSection}>
-                    <h3 className={`${styles.dayWorkoutSectionTitle} ${styles.dayWorkoutSectionTitleCooldown}`}>
-                      🧘 Cool Down {selectedDayWorkout.workout.coolDown.totalDuration && `(${selectedDayWorkout.workout.coolDown.totalDuration} sec)`}
-                    </h3>
-                    {selectedDayWorkout.workout.coolDown.exercises.map((exercise, exIndex) => (
-                      <div key={exIndex} className={`${styles.dayWorkoutExerciseCard} ${styles.dayWorkoutExerciseCardCooldown}`}>
-                        <div className={styles.dayWorkoutExerciseName}>
-                          {exercise.name}
-                          <span className={styles.dayWorkoutExerciseType}>
-                            ({exercise.type})
-                          </span>
-                        </div>
-                        {formatExercise(exercise, selectedDayWorkout.plan) && (
-                          <div className={styles.dayWorkoutExerciseDetails}>
-                            {formatExercise(exercise, selectedDayWorkout.plan)}
-                          </div>
-                        )}
-                        {exercise.notes && (
-                          <div className={styles.dayWorkoutExerciseNotes}>
-                            💡 {exercise.notes}
-                          </div>
+                  {/* Cool Down Section */}
+                  {selectedDayWorkout.workout.coolDown &&
+                    selectedDayWorkout.workout.coolDown.exercises &&
+                    selectedDayWorkout.workout.coolDown.exercises.length >
+                      0 && (
+                      <div className={styles.dayWorkoutSection}>
+                        <h3
+                          className={`${styles.dayWorkoutSectionTitle} ${styles.dayWorkoutSectionTitleCooldown}`}
+                        >
+                          🧘 Cool Down{" "}
+                          {selectedDayWorkout.workout.coolDown.totalDuration &&
+                            `(${selectedDayWorkout.workout.coolDown.totalDuration} sec)`}
+                        </h3>
+                        {selectedDayWorkout.workout.coolDown.exercises.map(
+                          (exercise, exIndex) => (
+                            <div
+                              key={exIndex}
+                              className={`${styles.dayWorkoutExerciseCard} ${styles.dayWorkoutExerciseCardCooldown}`}
+                            >
+                              <div className={styles.dayWorkoutExerciseName}>
+                                {exercise.name}
+                                <span className={styles.dayWorkoutExerciseType}>
+                                  ({exercise.type})
+                                </span>
+                              </div>
+                              {formatExercise(
+                                exercise,
+                                selectedDayWorkout.plan
+                              ) && (
+                                <div
+                                  className={styles.dayWorkoutExerciseDetails}
+                                >
+                                  {formatExercise(
+                                    exercise,
+                                    selectedDayWorkout.plan
+                                  )}
+                                </div>
+                              )}
+                              {exercise.notes && (
+                                <div className={styles.dayWorkoutExerciseNotes}>
+                                  💡 {exercise.notes}
+                                </div>
+                              )}
+                            </div>
+                          )
                         )}
                       </div>
-                    ))}
-                  </div>
-                )}
+                    )}
 
-                {/* Day Notes */}
-                {selectedDayWorkout.workout.notes && (
-                  <div className={styles.dayWorkoutDayNotes}>
-                    <strong className={styles.dayWorkoutDayNotesTitle}>📝 Day Notes:</strong>
-                    <div className={styles.dayWorkoutDayNotesContent}>
-                      {selectedDayWorkout.workout.notes}
+                  {/* Day Notes */}
+                  {selectedDayWorkout.workout.notes && (
+                    <div className={styles.dayWorkoutDayNotes}>
+                      <strong className={styles.dayWorkoutDayNotesTitle}>
+                        📝 Day Notes:
+                      </strong>
+                      <div className={styles.dayWorkoutDayNotesContent}>
+                        {selectedDayWorkout.workout.notes}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
-                {/* Show message if no exercises */}
-                {(!selectedDayWorkout.workout.exercises || selectedDayWorkout.workout.exercises.length === 0) && 
-                 (!selectedDayWorkout.workout.warmUp || !selectedDayWorkout.workout.warmUp.exercises || selectedDayWorkout.workout.warmUp.exercises.length === 0) &&
-                 (!selectedDayWorkout.workout.coolDown || !selectedDayWorkout.workout.coolDown.exercises || selectedDayWorkout.workout.coolDown.exercises.length === 0) && (
-                  <div className={styles.dayWorkoutEmptyMessage}>
-                    No exercises scheduled for this day
-                  </div>
-                )}
-              </div>
-            )}
+                  {/* Show message if no exercises */}
+                  {(!selectedDayWorkout.workout.exercises ||
+                    selectedDayWorkout.workout.exercises.length === 0) &&
+                    (!selectedDayWorkout.workout.warmUp ||
+                      !selectedDayWorkout.workout.warmUp.exercises ||
+                      selectedDayWorkout.workout.warmUp.exercises.length ===
+                        0) &&
+                    (!selectedDayWorkout.workout.coolDown ||
+                      !selectedDayWorkout.workout.coolDown.exercises ||
+                      selectedDayWorkout.workout.coolDown.exercises.length ===
+                        0) && (
+                      <div className={styles.dayWorkoutEmptyMessage}>
+                        No exercises scheduled for this day
+                      </div>
+                    )}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        )}
     </div>
   );
 }

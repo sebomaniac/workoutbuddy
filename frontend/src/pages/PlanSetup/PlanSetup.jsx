@@ -10,12 +10,30 @@ import { generateWorkoutPlan } from "../../services/workout";
 import { fetchSettings } from "../../services/settings";
 
 const PlanSetup = () => {
-  const types = ["cardio", "plyometrics", "strength", "stretching"]
-  const muscles = ["abdominals", "abductors", "adductors", "biceps",
-    "calves", "chest", "forearms", "glutes", "hamstrings", "lats",
-    "lower_back", "middle_back", "neck", "quadriceps", "traps", "triceps"]
-  const difficulties = ["beginner", "intermediate", "expert"]
-  const genders = ["male", 'female', 'non-binary', 'other']
+  const format_label = (str) => {
+    return str.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  };
+  const types = ["cardio", "plyometrics", "strength", "stretching"];
+  const muscles = [
+    "abdominals",
+    "abductors",
+    "adductors",
+    "biceps",
+    "calves",
+    "chest",
+    "forearms",
+    "glutes",
+    "hamstrings",
+    "lats",
+    "lower_back",
+    "middle_back",
+    "neck",
+    "quadriceps",
+    "traps",
+    "triceps",
+  ];
+  const difficulties = ["beginner", "intermediate", "expert"];
+  const genders = ["male", "female", "non-binary", "other"];
 
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [selectedMuscles, setSelectedMuscles] = useState([]);
@@ -39,11 +57,10 @@ const PlanSetup = () => {
 
   function handleTypeSelection(type) {
     const newTypes = selectedTypes.slice();
-    if (! newTypes.includes(type)) {
+    if (!newTypes.includes(type)) {
       newTypes.push(type);
       setSelectedTypes(newTypes);
-    }
-    else {
+    } else {
       newTypes.splice(newTypes.indexOf(type), 1);
       setSelectedTypes(newTypes);
     }
@@ -152,27 +169,29 @@ const PlanSetup = () => {
       };
 
       const generatedPlan = await generateWorkoutPlan(planData);
-      
+
       console.log("Workout plan generated successfully:", generatedPlan);
-      alert("Workout plan generated successfully! Redirecting to your dashboard...");
-      
+      alert(
+        "Workout plan generated successfully! Redirecting to your dashboard..."
+      );
+
       // Navigate to dashboard page
       navigate("/dashboard");
-      
     } catch (error) {
       console.error("Error generating workout plan:", error);
-      
+
       let errorMessage = "Failed to generate workout plan. Please try again.";
-      
+
       if (error.message.includes("No authentication token")) {
         errorMessage = "Please log in to generate a workout plan.";
         navigate("/login");
       } else if (error.message.includes("Failed to fetch")) {
-        errorMessage = "Network error. Please check your connection and try again.";
+        errorMessage =
+          "Network error. Please check your connection and try again.";
       } else if (error.message) {
         errorMessage = error.message;
       }
-      
+
       alert(errorMessage);
     } finally {
       setIsGenerating(false);
@@ -189,10 +208,10 @@ const PlanSetup = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <div className={styles.topContainer}>
-            <h2 className={styles.title}>
-              Plan Setup
-            </h2>
-            <p className={styles.setupInstructions}>Personalize your workout plan to achieve your fitness goals</p>
+            <h2 className={styles.title}>Plan Setup</h2>
+            <p className={styles.setupInstructions}>
+              Personalize your workout plan to achieve your fitness goals
+            </p>
           </div>
           <div className={styles.upperContainer}>
             <div className={styles.upperLeftContainer}>
@@ -208,11 +227,13 @@ const PlanSetup = () => {
                 onSelect={handleDifficultySelection}
               />
               <div className={styles.weightUnitRow}>
-                <label htmlFor="weightUnit" className={styles.weightUnitLabel}>Weight Unit:</label>
+                <label htmlFor="weightUnit" className={styles.weightUnitLabel}>
+                  Weight Unit:
+                </label>
                 <select
                   id="weightUnit"
                   value={weightUnit}
-                  onChange={e => setWeightUnit(e.target.value)}
+                  onChange={(e) => setWeightUnit(e.target.value)}
                   className={styles.weightUnitSelect}
                 >
                   <option value="lbs">Pounds (lbs)</option>
@@ -236,8 +257,8 @@ const PlanSetup = () => {
               onChange={(e) => setPrompt(e.target.value)}
             />
           </div>
-          <button 
-            className={styles.submitButton} 
+          <button
+            className={styles.submitButton}
             onClick={handleSubmit}
             disabled={isGenerating}
           >
