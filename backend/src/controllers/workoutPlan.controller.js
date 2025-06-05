@@ -103,6 +103,8 @@ router.post("/create-plan", async (req, res) => {
         ${workoutPlanInstructions}
         
         User request: ${prompt}
+
+        If the user request includes settings (i.e weight unit, gender, age, height, weight, bench press PR, squat PR, deadlift PR, pull ups PR), use the settings from the user's profile to generate the plan.
         
         Available exercises you can use: ${exerciseJSON}
         
