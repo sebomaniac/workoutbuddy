@@ -171,12 +171,14 @@
 
 .workoutCard {
   border-radius: 20px;
-  background-color: rgba(217, 217, 217, 1);
+  background-color: rgba(217, 217, 217, 0.1);
   margin-top: 26px;
   padding: 33px 38px;
-  color: rgba(0, 0, 0, 1);
+  color: var(--text);
   font-weight: 500;
   animation: cardAppear 0.6s ease-out;
+  border: 1px solid rgba(192, 132, 252, 0.3);
+
 }
 
 @keyframes cardAppear {
@@ -191,24 +193,25 @@
 }
 
 .workoutTitle {
-  font-size: 45px;
+  font-size: 34px;
   margin-right: 42px;
 }
 
 .workoutDescription {
-  font-size: 30px;
+  font-size: 24px;
   margin-top: 18px;
 }
 
 .planContainer {
   border-radius: 20px;
-  background-color: rgba(217, 217, 217, 1);
+  background-color: rgba(217, 217, 217, 0.1);
   margin-top: 19px;
   padding: 120px 70px 72px;
   font-size: 45px;
-  color: rgba(0, 0, 0, 1);
+  color: var(--text);
   font-weight: 500;
   animation: planContainerAppear 0.8s ease-out;
+  border: 1px solid rgba(192, 132, 252, 0.3);
 }
 
 @keyframes planContainerAppear {
@@ -484,11 +487,13 @@
   cursor: pointer;
   transition: all 0.3s ease;
   border: 2px solid transparent;
+  border: 1px solid rgba(192, 132, 252, 0.5);
 }
 
 .planCard:hover {
   background-color: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(192, 132, 252, 1);
+
   transform: translateY(-2px);
 }
 
