@@ -225,20 +225,6 @@ const PlanSetup = () => {
                 selectedDifficulty={selectedDifficulty}
                 onSelect={handleDifficultySelection}
               />
-              <div className={styles.weightUnitRow}>
-                <label htmlFor="weightUnit" className={styles.weightUnitLabel}>
-                  Weight Unit:
-                </label>
-                <select
-                  id="weightUnit"
-                  value={weightUnit}
-                  onChange={(e) => setWeightUnit(e.target.value)}
-                  className={styles.weightUnitSelect}
-                >
-                  <option value="lbs">Pounds (lbs)</option>
-                  <option value="kg">Kilograms (kg)</option>
-                </select>
-              </div>
             </div>
             <div className={styles.upperRightContainer}>
               <MultipleSelector
