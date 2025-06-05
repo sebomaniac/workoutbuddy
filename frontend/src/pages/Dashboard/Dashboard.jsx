@@ -82,7 +82,11 @@ function Dashboard() {
   const formatExercise = (exercise, plan) => {
     const parts = [];
     if (exercise.sets && exercise.reps) {
-      parts.push(`${exercise.sets} sets × ${exercise.reps} reps`);
+      if (exercise.reps === 999) {
+        parts.push(`${exercise.sets} sets to failure`);
+      } else {
+        parts.push(`${exercise.sets} sets × ${exercise.reps} reps`);
+      }
     }
     if (exercise.weight) {
       const unit = plan?.weightUnit || exercise.weightUnit || "lbs";
