@@ -294,6 +294,8 @@ router.post("/generate-plan", async (req, res) => {
         
         ${workoutPlanInstructions}
         `;
+
+        console.log(userContext)
         
         const result = await model.generateContent(userContext);
         const responseText = result.response.text();
