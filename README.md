@@ -11,7 +11,7 @@
 Daniel Zhou, Kian Shandi, Lavender Hwang, Mark Mairs, Sebastian Mendez Johannessen
 
 ## Project Description
-Workout Buddy is a full-stack web application that provides users with custom workout plans based on their current fitness level, goals, and time commitment. By leveraging an AI-powered backend assistant, Workout Buddy generates tailored weekly workout plans to help users train smarter and stay motivated.
+Workout Buddy is a full-stack web application that generates personalized workout plans tailored to a user’s fitness level, goals, and schedule. By leveraging an AI-powered backend assistant, Workout Buddy generates tailored weekly workout plans to help users train smarter and stay motivated.
 
 ## Technology Stack
 #### Frontend
@@ -32,14 +32,14 @@ Workout Buddy is a full-stack web application that provides users with custom wo
 
 - **Detailed Exercise Database**: Integration with the Ninjas Exercises API provides access to a comprehensive database of exercises, ensuring all generated workouts use effective exercises. Users can also search for these exercises separate from their workout plan.
 
-- **Customizable Workout Parameters**: Users can specify:
+- **Customizable Workout Parameters**:
   - Multiple workout types (strength, cardio, plyometrics, stretching)
   - Target muscle groups
   - Difficulty level
   - Personal records and fitness metrics
   - Preferred weight units (lbs/kg)
 
-- **Interactive Workout Plans**: Each generated plan includes:
+- **Interactive Workout Plans**:
   - Detailed exercise instructions
   - Sets, reps, and rest periods
   - Warm-up and cool-down routines
@@ -47,7 +47,7 @@ Workout Buddy is a full-stack web application that provides users with custom wo
 
 - **User Profile Management**: 
   - Secure authentication
-  - Save generated workout plans
+  - Save and revisit generated workout plans
 
 - **AI Chat Assistant**: Users can ask questions about their workout plans and receive personalized advice from the AI assistant.
 
